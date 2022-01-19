@@ -637,6 +637,10 @@
                     
                     <div class="article-tag">
                         
+                            <a href="/tags/%E5%A4%A7%E4%B8%80/">
+                                <span class="chip bg-color">大一</span>
+                            </a>
+                        
                             <a href="/tags/C/">
                                 <span class="chip bg-color">C</span>
                             </a>
@@ -647,10 +651,6 @@
                         
                             <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
                                 <span class="chip bg-color">基础算法</span>
-                            </a>
-                        
-                            <a href="/tags/%E5%A4%A7%E4%B8%80/">
-                                <span class="chip bg-color">大一</span>
                             </a>
                         
                     </div>
@@ -1217,12 +1217,12 @@ bool num<span class="token punctuation">[</span>N<span class="token punctuation"
 <h3 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h3><p><a target="_blank" rel="noopener" href="http://202.197.224.59/exam/index.php/problem/exam_read/id/1396/exam_id/356#_2">XTUOJ1396</a></p>
 <p>题目描述：</p>
 <blockquote>
-<p>根据质因子唯一分解定理可知<br>$$<br>n=\prod_{i=1}^mpi^ki<br>$$<br>其中 pi 为素数。</p>
+<p>根据质因子唯一分解定理可知<br>$$<br>n=\prod_{i=1}^mpi^{ki}<br>$$<br>其中 pi 为素数。</p>
 <p>$$<br>定义g(n)=\sum_{i=1}^{m}ki,求\sum_{i=a}^bg(i)<br>$$</p>
 </blockquote>
 <p>输入与输出：</p>
 <blockquote>
-<p>输入：第一行是一个整数T(1≤T≤10000)，表示样例的个数。 以后每行两个整数a,b(1≤a≤b≤10^6)。</p>
+<p>输入：第一行是一个整数T（1≤T≤10000），表示样例的个数。 以后每行两个整数a,b（1≤a≤b≤10^6）。</p>
 <p>输出：每行输出一个样例的结果。</p>
 </blockquote>
 <p>样例输入与输出</p>
@@ -1469,7 +1469,7 @@ bool num<span class="token punctuation">[</span>N<span class="token punctuation"
 <p>​        算法原理：</p>
 <blockquote>
 <p>[ left , right ]一开始定为整个序列的左端和右端区间，每次判断中间位置与x的大小关系，则会有以下几种情况出现：</p>
-<p>其中 mid = (left + right) / 2 ，序列记为num[ ] </p>
+<p>其中 mid = （left + right） / 2 ，序列记为num[ ] </p>
 <ul>
 <li>若 num[mid]==x 跳出</li>
 <li>若 num[mid]&gt;x，则x在mid左边，right 更新为 mid-1</li>
@@ -1648,6 +1648,10 @@ bool num<span class="token punctuation">[</span>N<span class="token punctuation"
                     
                         <div class="article-tag">
                             
+                                <a href="/tags/%E5%A4%A7%E4%B8%80/">
+                                    <span class="chip bg-color">大一</span>
+                                </a>
+                            
                                 <a href="/tags/C/">
                                     <span class="chip bg-color">C</span>
                                 </a>
@@ -1658,10 +1662,6 @@ bool num<span class="token punctuation">[</span>N<span class="token punctuation"
                             
                                 <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
                                     <span class="chip bg-color">基础算法</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%A4%A7%E4%B8%80/">
-                                    <span class="chip bg-color">大一</span>
                                 </a>
                             
                         </div>
@@ -2133,68 +2133,66 @@ new Valine({
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/1.html">
+                <a href="/posts/2.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/posts/20200928021440.jpg" class="responsive-img" alt="C语言期末复习笔记">
+                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/posts/20200928015500.jpg" class="responsive-img" alt="STL入门---容器篇">
                         
-                        <span class="card-title">C语言期末复习笔记</span>
+                        <span class="card-title">STL入门---容器篇</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            大一上学期临近期末考试，整理了一些C语言的代码笔记。
+                            简单写一点C++中STL的容器部分的内容。
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-06
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-20
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/C%E8%AF%AD%E8%A8%80/" class="post-category">
-                                    C语言
+                            <a href="/categories/C/" class="post-category">
+                                    C++
                                 </a>
                             
-                            <a href="/categories/C%E8%AF%AD%E8%A8%80/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" class="post-category">
-                                    算法笔记
-                                </a>
-                            
-                            <a href="/categories/C%E8%AF%AD%E8%A8%80/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E5%9F%BA%E7%A1%80/" class="post-category">
+                            <a href="/categories/C/%E5%9F%BA%E7%A1%80/" class="post-category">
                                     基础
+                                </a>
+                            
+                            <a href="/categories/C/%E5%9F%BA%E7%A1%80/STL/" class="post-category">
+                                    STL
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
                     <a href="/tags/C/">
-                        <span class="chip bg-color">C</span>
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
-                    <a href="/tags/%E5%AD%A6%E4%B9%A0/">
-                        <span class="chip bg-color">学习</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">基础算法</span>
+                    <a href="/tags/STL/">
+                        <span class="chip bg-color">STL</span>
                     </a>
                     
                     <a href="/tags/%E5%A4%A7%E4%B8%80/">
                         <span class="chip bg-color">大一</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%81%87%E6%9C%9F/">
+                        <span class="chip bg-color">假期</span>
                     </a>
                     
                 </div>
@@ -2490,7 +2488,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">7.8k</span>&nbsp;字
+                class="white-color">9.6k</span>&nbsp;字
             
             
             

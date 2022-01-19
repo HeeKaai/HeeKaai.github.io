@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="听听音乐, HeeKaai 计算机 算法笔记 人间失格">
+    <meta name="keywords" content="STL入门---容器篇, HeeKaai 计算机 算法笔记 人间失格">
     <meta name="description" content="本科 | 计算机科学与技术 | 算法笔记">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -18,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>听听音乐 | 人间失格</title>
+    <title>STL入门---容器篇 | 人间失格</title>
 
     <link rel="icon" type="image/jpeg" href="https://s4.ax1x.com/2022/01/02/TTxWtK.jpg">
 
@@ -511,12 +511,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/posts/20200928013951.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/posts/20200928015500.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">听听音乐</h1>
+                    <h1 class="description center-align post-title">STL入门---容器篇</h1>
                 </div>
             </div>
         </div>
@@ -635,12 +635,45 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/C/">
+                                <span class="chip bg-color">C++</span>
+                            </a>
+                        
+                            <a href="/tags/STL/">
+                                <span class="chip bg-color">STL</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%A4%A7%E4%B8%80/">
+                                <span class="chip bg-color">大一</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%81%87%E6%9C%9F/">
+                                <span class="chip bg-color">假期</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/C/" class="post-category">
+                                C++
+                            </a>
+                        
+                            <a href="/categories/C/%E5%9F%BA%E7%A1%80/" class="post-category">
+                                基础
+                            </a>
+                        
+                            <a href="/categories/C/%E5%9F%BA%E7%A1%80/STL/" class="post-category">
+                                STL
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -649,28 +682,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-07-19
+                    2022-01-20
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-02
+                    2022-01-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    1.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    8 分
                 </div>
                 
 
@@ -688,7 +721,283 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <p>[TOC]</p>
+<h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>此文介绍STL中的容器部分，仅仅涉及入门知识及一些常见的用法。</p>
+<hr>
+<h1 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h1><p>  vector 翻译为向量，但是这里把它叫做“变长数组”更加容易理解它的用法。顾名思义：长度根据需要而自动改变的数组。</p>
+<p>  如果要使用vector容器，需要在头文件里加上#include&lt; vector &gt;</p>
+<h2 id="vector的定义"><a href="#vector的定义" class="headerlink" title="vector的定义"></a>vector的定义</h2><p>讲vector的定义之前，可以先回顾一下数组的定义方法。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">typename arrayname[arraysize];  //一维数组
+typename arrayname[arraysize1][arraysize2];  //二维数组<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>下面再来看vector的定义：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">vector&lt;typename&gt; name;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>和一维数组一样，typename可以是所有的基本类型，例如：int、double、char、结构体······当然也可以是STL中的其他容器，例如：vector、set、queue······</p>
+<p><strong>vector数组的定义</strong></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">vector&lt;typename&gt; name[size];<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>例如：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">vector&lt;int&gt; ve[100];<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这样ve[0]到ve[99]每一维都是一个vector容器。</p>
+<p>当然，如果我们把typename也改成vector容器，同样可以实现二维数组的功能。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">vector&lt;vector&lt;int&gt;&gt; name;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这样数组的两个维度都是“变长”的。而vector&lt;typename&gt; name[size]其中一维的长度就已经固定了。稍微体会一下这两者的区别。</p>
+<h2 id="访问vector容器中的元素"><a href="#访问vector容器中的元素" class="headerlink" title="访问vector容器中的元素"></a>访问vector容器中的元素</h2><p>vector容器有两种访问方式：通过下标或者迭代器访问。下面分别讲到这两种访问方式。</p>
+<ol>
+<li><p>通过下标访问</p>
+<p>和访问普通的数组一样，对于一个定义为vector&lt;int&gt;ve的vector容器而言，直接访问ve[index]即可。当然这个下标访问和普通数组一样是从0~ve.size()-1，也存在越界的问题。</p>
+</li>
+<li><p>通过迭代器访问</p>
+<p>迭代器（iterator）可以理解为一个类似于指针的东西，其定义为：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">vector&lt;typename&gt;::iterator it;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这样定义之后 i t 就是vector&lt;typename&gt;::iterator 型的变量。也即迭代器 i t ，并且可以通过*i t来访问vector中的元素。</p>
+<p>比如说：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;vector&gt;
+
+using namespace std;
+
+int main ()
+{
+    vector&lt;int&gt; ve;
+    for(int i=0;i&lt;6;i++)
+    ve.push_back(i); //后面会提，在ve的末尾添加元素i
+    for(int i=0;i&lt;6;i++)
+    cout&lt;&lt;ve[i]&lt;&lt;" ";
+    cout&lt;&lt;endl;
+    vector&lt;int&gt;::iterator it=ve.begin(); //it指向ve的首地址
+    for(int i=0;i&lt;6;i++)
+    cout&lt;&lt;*(it+i)&lt;&lt;" ";
+    cout&lt;&lt;endl;
+    return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>从上面给出的例程，可以看出*<em>ve[i]和</em>(it+i)是等价的**。</p>
+<p>上面的代码中出现了ve.begin()，其作用是取到vector容器的首地址。相应的，ve.end()却不是取到vector容器的末尾地址，而是末尾元素的下一个地址。</p>
+<p>另外，需要注意的还有迭代器还支持自加和自减操作，则遍历vector容器还有第三种写法：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;vector&gt;
+
+using namespace std;
+
+int main ()
+{
+    vector&lt;int&gt; ve;
+    for(int i=0;i&lt;6;i++)
+    ve.push_back(i); 
+    vector&lt;int&gt;::iterator it;
+    for(it=ve.begin();it!=ve.end();it++)
+    cout&lt;&lt;*it&lt;&lt;" ";
+    cout&lt;&lt;endl;
+    return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+</li>
+</ol>
+<h2 id="vector容器的常用函数"><a href="#vector容器的常用函数" class="headerlink" title="vector容器的常用函数"></a>vector容器的常用函数</h2><ol>
+<li><p><strong>push_back()</strong></p>
+<p>上面的代码就已经使用过这种方式添加过元素了。很简单，和函数名一样，push_back(x) 的作用就是在 vector 容器最后添加上元素 x ，时间复杂度是 O(1) 。</p>
+</li>
+<li><p><strong>pop_back()</strong></p>
+<p>有添加作用的函数自然，相对的肯定会有删减作用的函数。pop_back() 用以删除vector容器中的最后一个元素，时间复杂度同样为 O(1) 。</p>
+<p>比如说：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;vector&gt;
+
+using namespace std;
+
+int main ()
+{
+    vector&lt;int&gt; ve;
+    for(int i=1;i&lt;=5;i++)
+    {
+        ve.push_back(i);
+    }
+    vector&lt;int&gt;::iterator it;
+    for(it=ve.begin();it!=ve.end();it++)
+    {
+        cout&lt;&lt;*it;
+        cout&lt;&lt;" ";
+    }
+    putchar('\n');
+    ve.pop_back();
+    for(it=ve.begin();it!=ve.end();it++)
+    {
+        cout&lt;&lt;*it;
+        cout&lt;&lt;" ";
+    }
+    putchar('\n');
+    return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p><strong>size()</strong> </p>
+<p>size()函数用以获取vector容器中的元素个数。</p>
+</li>
+</ol>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;vector&gt;
+
+using namespace std;
+
+int main ()
+{
+    vector&lt;int&gt; ve;
+    for(int i=1;i&lt;=5;i++)
+    {
+        ve.push_back(i);
+    }
+    cout&lt;&lt;ve.size()&lt;&lt;endl;
+    return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<ol start="4">
+<li><p><strong>clear()</strong></p>
+<p>clear() 用以清空vector容器中的所有元素，时间复杂度是 O(N) 其中N是vector容器中的元素个数。</p>
+<p>示例如下：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;vector&gt;
+
+using namespace std;
+
+int main ()
+{
+    vector&lt;int&gt; ve;
+    for(int i=1;i&lt;=5;i++)
+    {
+        ve.push_back(i);
+    }
+    cout&lt;&lt;ve.size()&lt;&lt;endl; //输出5
+    ve.clear();
+    cout&lt;&lt;ve.size()&lt;&lt;endl; //输出0
+    return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+</li>
+</ol>
+<ol start="5">
+<li><p><strong>insert()</strong></p>
+<p>insert(it,x) 用以向vector容器的任意迭代器it位置插入一个元素x，时间复杂度为 O(N)</p>
+<p>示例如下：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;vector&gt;
+
+using namespace std;
+
+int main ()
+{
+    vector&lt;int&gt; ve;
+    for(int i=1;i&lt;=5;i++)
+    {
+        ve.push_back(i);
+    }
+    vector&lt;int&gt;::iterator it;
+    for(it=ve.begin();it!=ve.end();it++)
+    {
+        cout&lt;&lt;*it&lt;&lt;" "; //输出1 2 3 4 5
+    }
+    cout&lt;&lt;endl&lt;&lt;ve.size()&lt;&lt;endl;
+    it=ve.begin()+2; //***
+    ve.insert(it,-1);
+    for(it=ve.begin();it!=ve.end();it++)
+    {
+        cout&lt;&lt;*it&lt;&lt;" "; //输出1 2 -1 3 4 5
+    }
+    cout&lt;&lt;endl&lt;&lt;ve.size()&lt;&lt;endl;
+    return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+</li>
+</ol>
+<p>需要特别说明的是，代码中注释标注为三个*的地方，在常用的STL容器中，<strong>只有在string和vector中，才允许使用ve.begin()+2这种迭代器直接加上整数的写法！</strong></p>
+<ol start="5">
+<li><p><strong>erase()</strong></p>
+<p>erase()也是一种删除函数，它有两种使用方法：删除单个元素以及删除一个区间内的所有元素。时间复杂度自然也是 O(N) 。</p>
+<p>（1）删除单个元素：</p>
+<p>erase(it)即删去迭代器it处的元素。</p>
+<p>例如：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;vector&gt;
+
+using namespace std;
+
+int main ()
+{
+    vector&lt;int&gt; ve;
+    for(int i=1;i&lt;=5;i++)
+    {
+        ve.push_back(i);
+    }
+    vector&lt;int&gt;::iterator it;
+    for(it=ve.begin();it!=ve.end();it++)
+    {
+        cout&lt;&lt;*it&lt;&lt;" "; //输出1 2 3 4 5 
+    }
+    cout&lt;&lt;endl&lt;&lt;ve.size()&lt;&lt;endl;
+    it=ve.begin()+2;
+    ve.erase(it);
+    for(it=ve.begin();it!=ve.end();it++)
+    {
+        cout&lt;&lt;*it&lt;&lt;" "; //输出1 2 4 5
+    }
+    cout&lt;&lt;endl&lt;&lt;ve.size()&lt;&lt;endl;
+    return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>（2）删除一个区间内的所有元素</p>
+<p>遵循着“左闭右开”的原则，erase(left,right)即删去[first,right)内vector容器中的所有元素。</p>
+<p>示例如下：</p>
+</li>
+</ol>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;vector&gt;
+
+using namespace std;
+
+int main ()
+{
+    vector&lt;int&gt; ve;
+    for(int i=1;i&lt;=5;i++)
+    {
+        ve.push_back(i);
+    }
+    vector&lt;int&gt;::iterator it;
+    for(it=ve.begin();it!=ve.end();it++)
+    {
+        cout&lt;&lt;*it&lt;&lt;" "; //输出1 2 3 4 5 
+    }
+    cout&lt;&lt;endl&lt;&lt;ve.size()&lt;&lt;endl;
+    ve.erase(ve.begin()+1,ve.begin()+4); //删去下标为[1,4)的元素
+    for(it=ve.begin();it!=ve.end();it++)
+    {
+        cout&lt;&lt;*it&lt;&lt;" "; //输出1 5
+    }
+    cout&lt;&lt;endl&lt;&lt;ve.size()&lt;&lt;endl;
+    return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>  所以清空vector容器除了上面提到的clear()函数外，现在也可以使用第二种方法：ve.erase(ve.begin(),ve.end())。这样只是加深对“左闭右开”的理解，因为ve.end()指向的是末尾元素的下一个位置。当然clear()函数明显更加方便、简洁。</p>
+<hr>
+<h1 id="string"><a href="#string" class="headerlink" title="string"></a>string</h1><p>在C语言中，通常使用字符数组char s[] 来对字符串进行存储，在此基础上为了对字符串的操作更加的快捷、方便，C++在STL中加入了string类型，对字符串的常用功能进行了封装。如果要使用string，需要添加头文件&lt;string&gt;<strong>（注意string.h和string是完全不一样的头文件）</strong>。下面来看看string容器的常用使用方法。</p>
+
                 
             </div>
             <hr/>
@@ -714,7 +1023,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://heekaai.github.io/List/tools/index.html">https://heekaai.github.io/List/tools/index.html</a>
+                    <a href="https://heekaai.github.io/posts/2.html">https://heekaai.github.io/posts/2.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -751,7 +1060,23 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/C/">
+                                    <span class="chip bg-color">C++</span>
+                                </a>
+                            
+                                <a href="/tags/STL/">
+                                    <span class="chip bg-color">STL</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%A4%A7%E4%B8%80/">
+                                    <span class="chip bg-color">大一</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%81%87%E6%9C%9F/">
+                                    <span class="chip bg-color">假期</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -1226,34 +1551,66 @@ new Valine({
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/List/tools/index.html">
+                <a href="/posts/2.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/posts/20200928013951.jpg" class="responsive-img" alt="听听音乐">
+                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/posts/20200928015500.jpg" class="responsive-img" alt="STL入门---容器篇">
                         
-                        <span class="card-title">听听音乐</span>
+                        <span class="card-title">STL入门---容器篇</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            简单写一点C++中STL的容器部分的内容。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-07-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-20
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            HeeKaai
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/C/" class="post-category">
+                                    C++
+                                </a>
+                            
+                            <a href="/categories/C/%E5%9F%BA%E7%A1%80/" class="post-category">
+                                    基础
+                                </a>
+                            
+                            <a href="/categories/C/%E5%9F%BA%E7%A1%80/STL/" class="post-category">
+                                    STL
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
+                    </a>
+                    
+                    <a href="/tags/STL/">
+                        <span class="chip bg-color">STL</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%A4%A7%E4%B8%80/">
+                        <span class="chip bg-color">大一</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%81%87%E6%9C%9F/">
+                        <span class="chip bg-color">假期</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -1261,37 +1618,68 @@ new Valine({
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/List/tools/index.html">
+                <a href="/posts/1.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/posts/20200928013951.jpg" class="responsive-img" alt="听听音乐">
+                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/posts/20200928021440.jpg" class="responsive-img" alt="C语言期末复习笔记">
                         
-                        <span class="card-title">听听音乐</span>
+                        <span class="card-title">C语言期末复习笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            大一上学期临近期末考试，整理了一些C语言的代码笔记。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-07-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-06
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            HeeKaai
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/C%E8%AF%AD%E8%A8%80/" class="post-category">
+                                    C语言
+                                </a>
+                            
+                            <a href="/categories/C%E8%AF%AD%E8%A8%80/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" class="post-category">
+                                    算法笔记
+                                </a>
+                            
+                            <a href="/categories/C%E8%AF%AD%E8%A8%80/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E5%9F%BA%E7%A1%80/" class="post-category">
+                                    基础
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%A4%A7%E4%B8%80/">
+                        <span class="chip bg-color">大一</span>
+                    </a>
+                    
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">学习</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">基础算法</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -1456,6 +1844,13 @@ new Valine({
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
 
