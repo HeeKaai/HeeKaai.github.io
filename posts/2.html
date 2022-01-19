@@ -689,7 +689,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-18
+                    2022-01-19
                 </div>
                 
 
@@ -778,8 +778,8 @@ int main ()
     return 0;
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>从上面给出的例程，可以看出*<em>ve[i]和</em>(it+i)是等价的**。</p>
-<p>上面的代码中出现了ve.begin()，其作用是取到vector容器的首地址。相应的，ve.end()却不是取到vector容器的末尾地址，而是末尾元素的下一个地址。</p>
+<p>从上面给出的例程，可以看出<strong>ve[i]和*(it+i)是等价的</strong>。</p>
+<p>上面的代码中出现了ve.begin()，其作用是取到vector容器的首地址。而ve.end()却不是取到vector容器的末尾地址，而是末尾元素的下一个地址。</p>
 <p>另外，需要注意的还有迭代器还支持自加和自减操作，则遍历vector容器还有第三种写法：</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
 #include&lt;vector&gt;
