@@ -689,21 +689,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-02-19
+                    2022-02-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.6k
+                    2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    9 分
                 </div>
                 
 
@@ -930,6 +930,66 @@ int main()
 
 
 
+<p>补充：</p>
+<h2 id="partial-sum"><a href="#partial-sum" class="headerlink" title="partial_sum"></a>partial_sum</h2><p>partial_sum 是C++ STL 算法组件中的其中一个算法，其作用是计算某个序列局部元素的和。它有四个重载函数。要使用 partial_sum 需要引用头文件 numeric。</p>
+<p>一般来说，使用partical_sum函数需要四个参数</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">partial_sum(容器要计算的起始位置，容器要计算的结束位置，结果存放的起始位置，自定义函数)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>其中自定义函数可以留白，则默认计算局部和。而且，结果可以存放在原容器内。</p>
+<p>示例如下：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;numeric&gt;
+using namespace std;
+
+int cmp(int x, int y) {
+	return x - y;
+}
+
+int main () {
+	int test[10];
+	int ans[10];
+	for (int i = 0; i &lt; 10; i++)
+		test[i] = rand() % 57;
+	for (int i = 0; i &lt; 10; i++)
+		cout &lt;&lt; test[i] &lt;&lt; " ";
+	cout &lt;&lt; endl;
+	partial_sum(test, test + 10, ans);
+	for (int i = 0; i &lt; 10; i++)
+		cout &lt;&lt; ans[i] &lt;&lt; " ";
+	cout &lt;&lt; endl;
+	partial_sum(test, test + 10, test, cmp);
+	for (int i = 0; i &lt; 10; i++)
+		cout &lt;&lt; test[i] &lt;&lt; " ";
+	cout &lt;&lt; endl;
+	return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>运行结果如下：</p>
+<p><img src="C:\Users\Hee\AppData\Roaming\Typora\typora-user-images\image-20220224155612342.png" alt="image-20220224155612342"></p>
+<p>可以很直接看到用法，此函数通常可以用于前缀和，减少代码量。</p>
+<h2 id="max-element和min-element"><a href="#max-element和min-element" class="headerlink" title="max_element和min_element"></a>max_element和min_element</h2><p>作用：返回最大值和最小值的地址</p>
+<p>示例如下：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int main () {
+	int test[10];
+	for (int i = 0; i &lt; 10; i++)
+		test[i] = rand() % 57;
+	for (int i = 0; i &lt; 10; i++)
+		cout &lt;&lt; test[i] &lt;&lt; " ";
+	cout &lt;&lt; endl;
+	cout &lt;&lt; max_element(test, test + 10) &lt;&lt; endl;//输出地址
+	cout &lt;&lt; *max_element(test, test + 10) &lt;&lt; endl;//输出元素
+	cout &lt;&lt; max_element(test, test + 10) - test &lt;&lt; endl;//输出在数组中的位置
+	return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>运行结果：</p>
+<p><img src="C:\Users\Hee\AppData\Roaming\Typora\typora-user-images\image-20220224160532383.png" alt="image-20220224160532383"></p>
 <p>END</p>
 <hr>
 
@@ -1858,7 +1918,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">15.1k</span>&nbsp;字
+                class="white-color">15.5k</span>&nbsp;字
             
             
             
