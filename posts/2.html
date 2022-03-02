@@ -696,14 +696,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    6k
+                    6.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    26 分
+                    28 分
                 </div>
                 
 
@@ -1560,8 +1560,56 @@ int main() {
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ol start="5">
-<li>erase（）动态删除，返回当前迭代器的下一个节点（返回迭代器）。</li>
-<li>insert（）插入元素 单个元素以及区间插入均可实现</li>
+<li>erase（）动态删除，返回当前迭代器的下一个节点（返回迭代器）。区间删除，单个删除均可以实现。</li>
+</ol>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;list&gt;
+using namespace std;
+
+int main() {
+	list&lt;int&gt;lis;
+	for (int i = 1; i &lt;= 8; i++)
+		lis.push_back(i);
+	list&lt;int&gt;::iterator it, it1, it2;
+	for (it = lis.begin(); it != lis.end(); it++)
+		cout &lt;&lt; *it &lt;&lt; " " ;//输出： 1 2 3 4 5 6 7 8
+	cout &lt;&lt; endl;
+	it1 = it2 = lis.begin();
+	advance(it2, 6);
+	cout &lt;&lt; *it1 &lt;&lt; " " &lt;&lt; *it2 &lt;&lt; endl; //输出 1 7
+	it1 = lis.erase(it1);
+	cout &lt;&lt; *it1 &lt;&lt; " " &lt;&lt; *it2 &lt;&lt; endl; //输出 2 7
+	it2 = lis.erase(it2);
+	cout &lt;&lt; *it1 &lt;&lt; " " &lt;&lt; *it2 &lt;&lt; endl;// 输出 2 8 
+	it1++;
+	it2--;
+	lis.erase(it1, it2);//输出2 6 8
+	for (it = lis.begin(); it != lis.end(); it++)
+		cout &lt;&lt; *it &lt;&lt; " " ;
+	cout &lt;&lt; endl;
+	return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="5">
+<li>insert（）插入元素 单个元素以及区间插入均可实现 特别注意：返回的迭代器是原来的位置，插入的坐标迭代器指向的元素不变。</li>
+</ol>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;list&gt;
+using namespace std;
+
+int main() {
+	list&lt;int&gt;lis;
+	for (int i = 1; i &lt;= 6; i++)
+		lis.push_back(i);
+	list&lt;int&gt;::iterator it = lis.begin(), it1;
+	it1 = lis.insert(it, 10);
+	cout &lt;&lt; *it &lt;&lt; endl &lt;&lt; *it1 &lt;&lt; endl;//it指向1 it1指向10
+	return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<ol start="5">
 <li>merge（）合并两个list</li>
 <li>reverse（）倒转list</li>
 </ol>
@@ -2491,7 +2539,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">15.8k</span>&nbsp;字
+                class="white-color">16.1k</span>&nbsp;字
             
             
             
