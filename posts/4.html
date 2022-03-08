@@ -810,7 +810,7 @@ int CRT()
 		int x, y;
 		int tm = M / m[i];
 		ex_gcd(tm, m[i], x, y);
-		ret + (ret + tm * x * a[i]) % M;
+		ret = (ret + tm * x * a[i]) % M;
 	}
 	return (ret + M) % M;
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
