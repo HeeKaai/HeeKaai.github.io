@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="听听音乐, HeeKaai 计算机 算法笔记 人间失格">
+    <meta name="keywords" content="扩展欧几里得算法和中国剩余定理, HeeKaai 计算机 算法笔记 人间失格">
     <meta name="description" content="本科 | 计算机科学与技术 | 算法笔记">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -18,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>听听音乐 | 人间失格</title>
+    <title>扩展欧几里得算法和中国剩余定理 | 人间失格</title>
 
     <link rel="icon" type="image/jpeg" href="https://s4.ax1x.com/2022/01/02/TTxWtK.jpg">
 
@@ -511,12 +511,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://s4.ax1x.com/2022/02/12/Hwkx6U.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://s4.ax1x.com/2022/02/12/HwieXQ.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">听听音乐</h1>
+                    <h1 class="description center-align post-title">扩展欧几里得算法和中国剩余定理</h1>
                 </div>
             </div>
         </div>
@@ -635,12 +635,41 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%A4%A7%E4%B8%80/">
+                                <span class="chip bg-color">大一</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%A8%A1%E6%9D%BF/">
+                                <span class="chip bg-color">模板</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                算法
+                            </a>
+                        
+                            <a href="/categories/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80/" class="post-category">
+                                基础
+                            </a>
+                        
+                            <a href="/categories/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80/CRT%E6%A8%A1%E6%9D%BF/" class="post-category">
+                                CRT模板
+                            </a>
+                        
+                            <a href="/categories/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80/CRT%E6%A8%A1%E6%9D%BF/%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/" class="post-category">
+                                扩展欧几里得
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -649,28 +678,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-07-19
+                    2022-03-08
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-02
+                    2022-03-08
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    886
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
 
@@ -688,7 +717,130 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <p>[TOC]</p>
+<h1 id="扩展欧几里得算法"><a href="#扩展欧几里得算法" class="headerlink" title="扩展欧几里得算法"></a>扩展欧几里得算法</h1><p>扩展欧几里得算法就是对ax+by=gcd（a，b）的求解</p>
+<p>问题引入：给定两个整数a和b，求一组解（x，y）使得等式ax+by=gcd（a，b）成立。（解一定存在的，有定理证明过）</p>
+<p>回顾一下欧几里得算法（辗转相除法）</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int gcd(int a,int b){
+    if(b==0)return a;
+    else return gcd(b,a%b);
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>（为了不弄混淆，记g=gcd（a，b），这里的a和b是最初的值）</p>
+<p>观察跳出函数时的情况，a=g，b=0；此时x=1，y=0则是方程的解。按照这样的思路，是不是只要反推就可以得到最初的x，y的值。</p>
+<p>下面是得到递推式的推导过程</p>
+<p><img src="https://s1.ax1x.com/2022/03/08/bc1t1O.jpg" alt="推导过程"></p>
+<p>现在有了递推边界和递推式，就可以得到求解的代码：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int ex_gcd(int a, int b, int&amp; x, int&amp; y)  //利用引用，直接修改x、y的值
+{
+	if (b == 0)  //递归边界
+	{
+		x = 1;
+		y = 0;
+		return a;  //a=g
+	}
+	int g = ex_gcd(b, a % b, x, y);
+	int temp = x;
+	x = y;
+	y = temp - a / b * y;
+	return g;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>纯净版：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int ex_gcd(int a, int b, int&amp; x, int&amp; y)
+{
+	if (b == 0)
+	{
+		x = 1;
+		y = 0;
+		return a;
+	}
+	int g = ex_gcd(b, a % b, x, y);
+	int temp = x;
+	x = y;
+	y = temp - a / b * y;
+	return g;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>符号和上述推导一致，应该很容易看明白。由于x，y是引用，故函数结束时x，y的值就是一组解；得到一组解就很容易将其推广到无数组解：</p>
+<p><img src="https://s1.ax1x.com/2022/03/08/bcGjbQ.jpg" alt="推导过程"></p>
+<p>扩展欧几里得算法的应用：</p>
+<ol>
+<li>ax+by=c的求解</li>
+<li>同余式的求解</li>
+<li>逆元的求解</li>
+</ol>
+<h1 id="中国剩余定理（CRT）"><a href="#中国剩余定理（CRT）" class="headerlink" title="中国剩余定理（CRT）"></a>中国剩余定理（CRT）</h1><p>问题引入：已知一个数除以3余2，除以5余3，除以7余2，求解这个数。（孙子问题的白话版）</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+n1=k1*3+2\\
+n2=k2*5+3\\
+n3=k3*7+2\\
+x=n1+n2+n3
+\end{cases}</script><ol>
+<li><p>n1除以3余2，且是5,7的公倍数 ==》n1=35</p>
+</li>
+<li><p>n1除以5余3，且是3,7的公倍数 ==》n1=63</p>
+</li>
+<li><p>n1除以7余2，且是3,5的公倍数 ==》n1=30</p>
+<p>则x=（35+63+30）= 128</p>
+</li>
+</ol>
+<script type="math/tex; mode=display">
+x_{min}=x_{now}\%gcd(3,5,7)=128\%105=23</script><p>这就是著名的的孙子问题。我们再来看中国剩余定理的定义：</p>
+<p>设正整数$m1,m2,······,mk$ 两两互素，则同余方程组：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+x\equiv a_{1}(mod\ m_{1})\\
+x\equiv a_{2}(mod\ m_{2})\\
+······\\
+x\equiv a_{k}(mod\ m_{k})\\
+\end{cases}</script><p><strong>一定会有整数解</strong>，并且在模M（$M=\prod_{i=1}^{m}m_i$）下的解是惟一的，x的值为：</p>
+<script type="math/tex; mode=display">
+x\equiv (a_1M_1M_1^{-1}+a_2M_2M_2^{-1}+···+a_kM_kM_k^{-1})\ mod\ M</script><p>其中$M_i={M\over m_i}$ ,而$M_i^{-1}为M_i模m_i的逆元$ </p>
+<p>上面就是中国剩余定理的完整描述，也就可以得到下面的代码模板了：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">//情况一：n个数互质
+const int maxn = 2007 ;
+int a[maxn], m[maxn], n;
+int CRT()
+{
+	int M = 1;
+	for (int i = 0; i &lt; n; i++)
+		M *= m[i];
+	int ret = 0;
+	for (int i = 0; i &lt; n; i++)
+	{
+		int x, y;
+		int tm = M / m[i];
+		ex_gcd(tm, m[i], x, y);
+		ret + (ret + tm * x * a[i]) % M;
+	}
+	return (ret + M) % M;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>现在把情况更加一般化，如果n个数不互质呢，其实也是可以转化的，（证明省略），直接上代码：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">//情况二：n个数不互质
+int a[maxn], m[maxn], n;
+int CRT()
+{
+	if (n == 1)
+	{
+		if (m[0] &gt; a[0])return a[0];
+		else return -1;
+	}
+	int x, y, d;
+	for (int i = 1; i &lt; n; i++)
+	{
+		if (m[i] &lt;= a[i])return -1;
+		d = ex_gcd(m[0], m[i], x, y);
+		if ((a[i] - a[0]) % d != 0)return -1;
+		int t = m[i] / d;
+		x = ((a[i] - a[0]) / d * x % t + t) % t;
+		a[0] = x * m[0] + a[0];
+		m[0] = m[0] * m[i] / d;
+		a[0] = (a[0] % m[0] + m[0]) % m[0];
+	}
+	return a[0];
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<hr>
+<p><strong>END</strong></p>
+
                 
             </div>
             <hr/>
@@ -714,7 +866,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://heekaai.github.io/List/tools/index.html">https://heekaai.github.io/List/tools/index.html</a>
+                    <a href="https://heekaai.github.io/posts/4.html">https://heekaai.github.io/posts/4.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -751,7 +903,15 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E5%A4%A7%E4%B8%80/">
+                                    <span class="chip bg-color">大一</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%A8%A1%E6%9D%BF/">
+                                    <span class="chip bg-color">模板</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -1226,34 +1386,62 @@ new Valine({
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/List/tools/index.html">
+                <a href="/posts/4.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://s4.ax1x.com/2022/02/12/Hwkx6U.jpg" class="responsive-img" alt="听听音乐">
+                        <img src="https://s4.ax1x.com/2022/02/12/HwieXQ.jpg" class="responsive-img" alt="扩展欧几里得算法和中国剩余定理">
                         
-                        <span class="card-title">听听音乐</span>
+                        <span class="card-title">扩展欧几里得算法和中国剩余定理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            从扩展欧几里得算法到CRT的模板。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-07-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-08
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            HeeKaai
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                    算法
+                                </a>
+                            
+                            <a href="/categories/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80/" class="post-category">
+                                    基础
+                                </a>
+                            
+                            <a href="/categories/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80/CRT%E6%A8%A1%E6%9D%BF/" class="post-category">
+                                    CRT模板
+                                </a>
+                            
+                            <a href="/categories/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80/CRT%E6%A8%A1%E6%9D%BF/%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/" class="post-category">
+                                    扩展欧几里得
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%A4%A7%E4%B8%80/">
+                        <span class="chip bg-color">大一</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%A8%A1%E6%9D%BF/">
+                        <span class="chip bg-color">模板</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -1261,37 +1449,68 @@ new Valine({
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/List/tools/index.html">
+                <a href="/posts/3.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://s4.ax1x.com/2022/02/12/Hwkx6U.jpg" class="responsive-img" alt="听听音乐">
+                        <img src="https://s4.ax1x.com/2022/02/12/HwApm4.jpg" class="responsive-img" alt="STL入门--algorithm头文件">
                         
-                        <span class="card-title">听听音乐</span>
+                        <span class="card-title">STL入门--algorithm头文件</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            简单写一点C++中STL中头文件为algorithm的一些常用函数。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-07-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-18
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            HeeKaai
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/C/" class="post-category">
+                                    C++
+                                </a>
+                            
+                            <a href="/categories/C/%E5%9F%BA%E7%A1%80/" class="post-category">
+                                    基础
+                                </a>
+                            
+                            <a href="/categories/C/%E5%9F%BA%E7%A1%80/STL/" class="post-category">
+                                    STL
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
+                    </a>
+                    
+                    <a href="/tags/STL/">
+                        <span class="chip bg-color">STL</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%A4%A7%E4%B8%80/">
+                        <span class="chip bg-color">大一</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%81%87%E6%9C%9F/">
+                        <span class="chip bg-color">假期</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -1456,6 +1675,13 @@ new Valine({
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
 

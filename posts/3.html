@@ -757,9 +757,6 @@ int main()
 	cout &lt;&lt; endl; //输出：0 3 2 1 4 5
 	return 0;
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
 <h2 id="next-permutation（）"><a href="#next-permutation（）" class="headerlink" title="next_permutation（）"></a>next_permutation（）</h2><p>next_permutation（）给出一个序列在全排列中的下一个序列。</p>
 <p>全排列是按照字典序由小至大的顺序进行排序。</p>
 <p>并且值得注意的是其返回值，若存在下一个排序，返回值是true；若不存在最后一个排序（即当前为最后一个全排列），返回值则为false。根据这一特性，通常会使用do···while···循环来实现全排列。</p>
@@ -780,16 +777,10 @@ int main ()
     }while(next_permutation(num,num+9));
     return 0;
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
 <h2 id="fill（）"><a href="#fill（）" class="headerlink" title="fill（）"></a>fill（）</h2><p>fill（）函数可以将数组或容器某区间内所有元素全部赋值为同一值，用法和memset类似，但是fill（）函数的赋值可以是数据范围内的一值。</p>
 <p>具体用法：</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">fill(it1,it2,num)；
     //it可以是指针或者是迭代器<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-
-
 <h2 id="sort（）"><a href="#sort（）" class="headerlink" title="sort（）"></a>sort（）</h2><p>顾翻译思义，sort就是用来排序的函数，效率较高。相比于C语言中的qsort函数，sort函数用起来更加便捷，并且规避某些效率特别低的情况。</p>
 <h3 id="sort函数的三个参数"><a href="#sort函数的三个参数" class="headerlink" title="sort函数的三个参数"></a>sort函数的三个参数</h3><ol>
 <li><p>第一个是要排序的数组的起始地址。</p>
@@ -830,7 +821,6 @@ int main()
 	cout &lt;&lt; endl;
 	return 0;
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>其他数据类型同理可知。</p>
 </li>
 <li><p>结构体数组的排序</p>
@@ -866,14 +856,12 @@ int main()
 	}
 	return 0;
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>很明显可以发现，一级排序仅仅只会排序结构体中的第一个变量，若想实现第二个变量的排序，只需改变cmp函数的写法</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c">bool <span class="token function">cmp</span><span class="token punctuation">(</span>test a<span class="token punctuation">,</span> test b<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
 	<span class="token keyword">if</span> <span class="token punctuation">(</span>a<span class="token punctuation">.</span>x <span class="token operator">!=</span> b<span class="token punctuation">.</span>x<span class="token punctuation">)</span><span class="token keyword">return</span> a<span class="token punctuation">.</span>x <span class="token operator">&lt;</span> b<span class="token punctuation">.</span>x<span class="token punctuation">;</span>
 	<span class="token keyword">else</span> <span class="token keyword">return</span> a<span class="token punctuation">.</span>y <span class="token operator">&gt;</span> b<span class="token punctuation">.</span>y<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token comment">//x从小到大，y从大到小的顺序</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>类似的可以进行扩展。</p>
 </li>
 <li><p>STL容器的排序</p>
@@ -892,9 +880,6 @@ int main()
 //查找第一个小于或等于num的元素位置
 upper_bound(left,right,num,greater&lt;type&gt;());
 //查找第一个小于num的元素位置<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
 <p> 示例如下：</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;algorithm&gt;
 #include&lt;iostream&gt;
@@ -927,14 +912,10 @@ int main()
 	cout &lt;&lt; pos2 &lt;&lt; endl;
 	return 0;
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
 <p>补充：</p>
 <h2 id="partial-sum"><a href="#partial-sum" class="headerlink" title="partial_sum"></a>partial_sum</h2><p>partial_sum 是C++ STL 算法组件中的其中一个算法，其作用是计算某个序列局部元素的和。它有四个重载函数。要使用 partial_sum 需要引用头文件 numeric。</p>
 <p>一般来说，使用partical_sum函数需要四个参数</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">partial_sum(容器要计算的起始位置，容器要计算的结束位置，结果存放的起始位置，自定义函数)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
 <p>其中自定义函数可以留白，则默认计算局部和。而且，结果可以存放在原容器内。</p>
 <p>示例如下：</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
@@ -963,11 +944,8 @@ int main () {
 	cout &lt;&lt; endl;
 	return 0;
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
 <p>运行结果如下：</p>
-<p><img src="https://s4.ax1x.com/2022/03/02/b8sFRs.png"></p>
+<p><img src="https://s4.ax1x.com/2022/03/02/b8sFRs.png" alt=""></p>
 <p>可以很直接看到用法，此函数通常可以用于前缀和，减少代码量。</p>
 <h2 id="max-element和min-element"><a href="#max-element和min-element" class="headerlink" title="max_element和min_element"></a>max_element和min_element</h2><p>作用：返回最大值和最小值的地址</p>
 <p>示例如下：</p>
@@ -987,7 +965,6 @@ int main () {
 	cout &lt;&lt; max_element(test, test + 10) - test &lt;&lt; endl;//输出在数组中的位置
 	return 0;
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>运行结果：</p>
 <p><img src="https://s4.ax1x.com/2022/03/02/b8sPiQ.png" alt="运行结果"></p>
 <p>END</p>
@@ -1541,68 +1518,62 @@ new Valine({
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/3.html">
+                <a href="/posts/4.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://s4.ax1x.com/2022/02/12/HwApm4.jpg" class="responsive-img" alt="STL入门--algorithm头文件">
+                        <img src="https://s4.ax1x.com/2022/02/12/HwieXQ.jpg" class="responsive-img" alt="扩展欧几里得算法和中国剩余定理">
                         
-                        <span class="card-title">STL入门--algorithm头文件</span>
+                        <span class="card-title">扩展欧几里得算法和中国剩余定理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            简单写一点C++中STL中头文件为algorithm的一些常用函数。
+                            从扩展欧几里得算法到CRT的模板。
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-18
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-08
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/C/" class="post-category">
-                                    C++
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                    算法
                                 </a>
                             
-                            <a href="/categories/C/%E5%9F%BA%E7%A1%80/" class="post-category">
+                            <a href="/categories/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80/" class="post-category">
                                     基础
                                 </a>
                             
-                            <a href="/categories/C/%E5%9F%BA%E7%A1%80/STL/" class="post-category">
-                                    STL
+                            <a href="/categories/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80/CRT%E6%A8%A1%E6%9D%BF/" class="post-category">
+                                    CRT模板
+                                </a>
+                            
+                            <a href="/categories/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80/CRT%E6%A8%A1%E6%9D%BF/%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/" class="post-category">
+                                    扩展欧几里得
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
-                    
-                    <a href="/tags/C/">
-                        <span class="chip bg-color">C++</span>
-                    </a>
-                    
-                    <a href="/tags/STL/">
-                        <span class="chip bg-color">STL</span>
-                    </a>
                     
                     <a href="/tags/%E5%A4%A7%E4%B8%80/">
                         <span class="chip bg-color">大一</span>
                     </a>
                     
-                    <a href="/tags/%E5%81%87%E6%9C%9F/">
-                        <span class="chip bg-color">假期</span>
+                    <a href="/tags/%E6%A8%A1%E6%9D%BF/">
+                        <span class="chip bg-color">模板</span>
                     </a>
                     
                 </div>
@@ -1918,7 +1889,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">16.1k</span>&nbsp;字
+                class="white-color">10.7k</span>&nbsp;字
             
             
             
