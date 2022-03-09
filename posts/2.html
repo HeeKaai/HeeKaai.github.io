@@ -1450,7 +1450,8 @@ int main ()
     cout&lt;&lt;p.first&lt;&lt;" "&lt;&lt;p.second&lt;&lt;endl;
     return 0;
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="pair容器常用函数"><a href="#pair容器常用函数" class="headerlink" title="pair容器常用函数"></a>pair容器常用函数</h2><ol>
+<p><strong>常见用法有：</strong></p>
+<ol>
 <li><p>比较操作数</p>
 <p>两个pair类型数据可以直接使用==、！=、&lt;等比较大小，比较规则是先比较first，在first相同的情况下才去比较second的大小。</p>
 </li>
@@ -1488,9 +1489,7 @@ int main() {
 	cout &lt;&lt; endl;
 	return 0;
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ol>
-<li>erase（）动态删除，返回当前迭代器的下一个节点（返回迭代器）。区间删除，单个删除均可以实现。</li>
-</ol>
+<p>5.erase（）动态删除，返回当前迭代器的下一个节点（返回迭代器）。区间删除，单个删除均可以实现。</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
 #include &lt;list&gt;
 using namespace std;
@@ -1518,9 +1517,7 @@ int main() {
 	cout &lt;&lt; endl;
 	return 0;
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ol>
-<li>insert（）插入元素 单个元素以及区间插入均可实现 特别注意：返回的迭代器是原来的位置，插入的坐标迭代器指向的元素不变。</li>
-</ol>
+<p>6.insert（）插入元素 单个元素以及区间插入均可实现 特别注意：返回的迭代器是原来的位置，插入的坐标迭代器指向的元素不变。</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
 #include &lt;list&gt;
 using namespace std;
@@ -1534,8 +1531,7 @@ int main() {
 	cout &lt;&lt; *it &lt;&lt; endl &lt;&lt; *it1 &lt;&lt; endl;//it指向1 it1指向10
 	return 0;
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ol>
-<li><p>splice（）把链表中的元素从一个移到另一个链表中（可以理解为剪切函数）函数无返回值</p>
+<p>7.splice（）把链表中的元素从一个移到另一个链表中（可以理解为剪切函数）函数无返回值</p>
 <p>常见有三种用法，代码如下：</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
 #include &lt;list&gt;
@@ -1596,14 +1592,9 @@ int main() {
 	return 0;
 }
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>运行结果：</p>
 <p><img src="https://s1.ax1x.com/2022/03/09/bR1bOU.png" alt="运行结果"></p>
-</li>
-<li><p>merge（）合并两个有序的list，合并后仍然有序。（默认是递增的）</p>
-</li>
-<li><p>reverse（）倒转list</p>
-</li>
-</ol>
+<p>8.merge（）合并两个有序的list，合并后仍然有序。（默认是递增的）</p>
+<p>9.reverse（)倒转list</p>
 <hr>
 <p><strong>END</strong></p>
 
