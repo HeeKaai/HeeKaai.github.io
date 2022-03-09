@@ -689,21 +689,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-03-02
+                    2022-03-09
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    6.3k
+                    6.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    28 分
+                    29 分
                 </div>
                 
 
@@ -1535,11 +1535,77 @@ int main() {
 	return 0;
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ol>
-<li>merge（）合并两个list</li>
-<li>reverse（）倒转list</li>
+<li><p>splice（）把链表中的元素从一个移到另一个链表中（可以理解为剪切函数）函数无返回值</p>
+<p>常见有三种用法，代码如下：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;list&gt;
+using namespace std;
+
+int main() {
+	list&lt;int&gt;lis1{1, 2, 3, 4, 5};
+	list&lt;int&gt;lis2{11, 22, 33, 44, 55};
+	//用法一
+	auto it = lis1.begin();
+	advance(it, 3);
+	lis1.splice(it, lis2);
+	for (it = lis1.begin(); it != lis1.end(); it++)
+		cout &lt;&lt; *it &lt;&lt; " ";
+	cout &lt;&lt; endl;
+	if (lis2.empty())
+		cout &lt;&lt; "lis2 is empty" &lt;&lt; endl;
+	/*
+	注意两点：
+	1.插入的位置（在迭代器指向的位置之前插入lis2）
+	2.lis中的元素被转移后容器清空了
+	时间复杂度常数级别
+	*/
+
+	//用法二
+	cout &lt;&lt; endl &lt;&lt; endl;
+	it = lis1.begin();
+	lis2.splice(lis2.begin(), lis1, it);
+	for (it = lis1.begin(); it != lis1.end(); it++)
+		cout &lt;&lt; *it &lt;&lt; " ";
+	cout &lt;&lt; endl;
+	for (it = lis2.begin(); it != lis2.end(); it++)
+		cout &lt;&lt; *it &lt;&lt; " ";
+	cout &lt;&lt; endl;
+	/*
+	同样注意用法一的那两点
+	时间复杂度常数级别
+	*/
+
+	//用法三
+	cout &lt;&lt; endl &lt;&lt; endl;
+	it = lis1.begin();
+	advance(it, 3); // it-&gt;22
+	lis2.splice(lis2.end(), lis1, it, lis1.end());
+	for (it = lis1.begin(); it != lis1.end(); it++)
+		cout &lt;&lt; *it &lt;&lt; " ";
+	cout &lt;&lt; endl;
+	for (it = lis2.begin(); it != lis2.end(); it++)
+		cout &lt;&lt; *it &lt;&lt; " ";
+	cout &lt;&lt; endl;
+	/*
+	注意：
+	1.区间插入 左闭右开
+	2.删除原有元素
+	3.插入的位置
+	时间复杂度线性级别
+	*/
+	return 0;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>运行结果：</p>
+<p><img src="https://s1.ax1x.com/2022/03/09/bR1bOU.png" alt="运行结果"></p>
+</li>
+<li><p>merge（）合并两个有序的list，合并后仍然有序。（默认是递增的）</p>
+</li>
+<li><p>reverse（）倒转list</p>
+</li>
 </ol>
-<p>END</p>
 <hr>
+<p><strong>END</strong></p>
 
                 
             </div>
@@ -2464,7 +2530,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">10.7k</span>&nbsp;字
+                class="white-color">11.1k</span>&nbsp;字
             
             
             
