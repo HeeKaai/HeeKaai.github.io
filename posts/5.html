@@ -688,14 +688,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    591
+                    1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    4 分
                 </div>
                 
 
@@ -721,10 +721,9 @@
 <h1 id="基本操作的实现"><a href="#基本操作的实现" class="headerlink" title="基本操作的实现"></a>基本操作的实现</h1><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c">int father[N]{};
 void init()
 {
-	for(int i=1;i&lt;N;i++){
+	for(int i=1;i&lt;N;i++)
 		father[i]=i;
-	}
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>初始化每一个元素都是根节点，独立成一个元素。</p>
 <h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><p>通过递归实现</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c">int find_root(int x){
@@ -757,6 +756,92 @@ void init()
 	}
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在寻找的时候，实现了路径上的元素的路径压缩。</p>
+<h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><p>放上一道例题（考查并集的裸题）：</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/277/A">Learning Languages</a></p>
+<p><em>题目描述：</em></p>
+<p>一个公司有n个员工，会使用m种语言，给出每个人会使用的语言（可以一种都不会），每个人学习不会的语言会花费1个单位的钱，为了让任意两个员工都能够交流（其他员工可以当他们的翻译），现在要求求出最小花费。</p>
+<p><em>思路</em>：</p>
+<p>并查集的思路，最后数出有多少根节点即可。（详细的结合代码理解）</p>
+<p>AC代码：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+const int maxn = 107;
+int t, n, m;
+int num[maxn]{};  /*num[i]的含义：第i种语言，员工num[i]第一个掌握（输入顺序的第一），后面出现
+                     会这种语言的自然是他的子节点*/
+int father[maxn]{};
+void init()
+{
+	for (int i = 0; i &lt; maxn; i++)
+		father[i] = i;
+}
+int find_root(int x)
+{
+	if (x == father[x])return x;
+	else return find_root((father[x]));
+}
+void _union(int a, int b)
+{
+	int faA = find_root(a);
+	int faB = find_root(b);
+	if (faA == faB)return;
+	father[faB] = faA;
+}
+int main()
+{
+	std::ios::sync_with_stdio(false);
+	std::cin.tie(0);
+	cin &gt;&gt; n &gt;&gt; m;
+	int ans = 0;
+	memset(num, 0, sizeof(num));
+	init();
+	for (int i = 1; i &lt;= n; i++)
+	{
+		int t;
+		cin &gt;&gt; t;
+		while (t--)
+		{
+			int x;
+			cin &gt;&gt; x;
+			if (num[x] == 0)num[x] = i;
+			else {
+				if (i == father[i])
+				{
+					father[i] = num[x];
+				}else{
+					int F1 = find_root(i);
+					int F2 = num[x];
+					_union(F1, F2); //该员工当翻译，合并两个集合
+				}
+			}
+		}
+	}
+	bool all0 = 1;
+	for (int i = 1; i &lt;= m; i++)
+	{
+		if (num[i] != 0)
+		{
+			all0 = 0;
+			break;
+		}
+	}
+	if (all0)
+	{
+		cout &lt;&lt; n &lt;&lt; endl;
+		return 0;
+	}
+	for (int i = 1; i &lt;= n; i++)
+	{
+		if (i == father[i])ans++;
+	}
+	ans--;
+	cout &lt;&lt; ans &lt;&lt; endl;
+	return 0;
+} <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>运用的函数都是上文提到过的，此题查找部分不需要压缩路径（数据范围很小），特别注意最后的all0的特判（没有人会公司的官方语言）。</p>
+<hr>
+<p><strong>END</strong></p>
 
                 
             </div>
@@ -1663,7 +1748,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">11.7k</span>&nbsp;字
+                class="white-color">12.1k</span>&nbsp;字
             
             
             
