@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="HeeKaai 计算机 算法笔记 人间失格">
+    <meta name="keywords" content="并查集, HeeKaai 计算机 算法笔记 人间失格">
     <meta name="description" content="本科 | 计算机科学与技术 | 算法笔记">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -18,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>人间失格</title>
+    <title>并查集 | 人间失格</title>
 
     <link rel="icon" type="image/jpeg" href="https://s4.ax1x.com/2022/01/02/TTxWtK.jpg">
 
@@ -511,12 +511,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://s4.ax1x.com/2022/02/12/Hwikff.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://s4.ax1x.com/2022/02/12/Hwiu0s.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title"></h1>
+                    <h1 class="description center-align post-title">并查集</h1>
                 </div>
             </div>
         </div>
@@ -635,12 +635,37 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%A4%A7%E4%B8%80/">
+                                <span class="chip bg-color">大一</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                                <span class="chip bg-color">数据结构</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                算法
+                            </a>
+                        
+                            <a href="/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                数据结构
+                            </a>
+                        
+                            <a href="/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%8A%A8%E6%80%81%E8%BF%9E%E9%80%9A%E6%80%A7%E9%97%AE%E9%A2%98/" class="post-category">
+                                动态连通性问题
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -649,28 +674,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-02
+                    2022-03-12
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-02
+                    2022-03-12
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1
+                    591
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -688,7 +713,51 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                wvlc3L96QK
+                <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>并查集是一种维护集合的数据结构，用以解决动态连通性问题。顾名思义，“并”—“合并”—“Union”；“查”—“查找”—“Find”；“集”—“集合”—“Set”。主要需要支持查找和合并两个操作。</p>
+<p>通常而言，并查集使用一个数组来实现：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">int father[N];<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>数组含义如下：</p>
+<p>$father[i]$表示元素 i 的父亲结点，其父亲结点也一定是这个集合里的元素。特别的，如果$father[i]=i$,则说明元素i是该集合的根节点，且对同一个集合只存在一个根节点，所以根节点也是这个集合的一个重要标识。</p>
+<h1 id="基本操作的实现"><a href="#基本操作的实现" class="headerlink" title="基本操作的实现"></a>基本操作的实现</h1><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c">int father[N]{};
+void init()
+{
+	for(int i=1;i&lt;N;i++){
+		father[i]=i;
+	}
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>初始化每一个元素都是根节点，独立成一个元素。</p>
+<h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><p>通过递归实现</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">int find_root(int x){
+	if(x==father[x])return x;
+	else return find_root((father[x]));
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h3><p>合并是指把两个集合合并成一个集合，<strong>只有两个集合是不同集合时，才能够合并。</strong>合并的过程是把一个集合的根节点的父亲指向另一个集合的根节点。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">void Union(int a,int b){
+	int faA=find_root(a);
+	int faB=find_root(b);
+	if(faA==faB)return;
+	father[faB]=faA;  //father[faA]=faB也是可以的
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>特别注意：</p>
+<ol>
+<li>一定是根节点和根节点的互相指向关系。</li>
+<li>不能对同一个集合的元素进行合并操作，否则将会产生一个闭环，从而破坏了其本身作为“树”的结构。</li>
+</ol>
+<h1 id="路径压缩"><a href="#路径压缩" class="headerlink" title="路径压缩"></a>路径压缩</h1><p>上面并合集的基本操作都非常简单，所以不做过多解释。现在考虑一个问题：对于一个链型的数据集合，要查找链条中的最后一个元素的父亲根结点，时间复杂度达到了O（N），这显然是无法接受的。所以我们应该想办法将其优化。</p>
+<p><img src="https://s1.ax1x.com/2022/03/12/b787gU.jpg" alt="路径压缩"></p>
+<p>这样处理之后，每一个子元素的查询时间复杂度是不是就可以降至O（1）。</p>
+<p>现在，只需要把这样的处理改写成代码即可。</p>
+<p>还是递归的写法：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">int find_root(int x){
+	if(x==father[x])return x;
+	else{
+		int F=find_root(father[x]); //寻找到根结点
+		father[x]=F;
+		return F;
+	}
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在寻找的时候，实现了路径上的元素的路径压缩。</p>
+
                 
             </div>
             <hr/>
@@ -714,7 +783,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://heekaai.github.io/baidu_verify_xxxxxxx.html">https://heekaai.github.io/baidu_verify_xxxxxxx.html</a>
+                    <a href="https://heekaai.github.io/posts/5.html">https://heekaai.github.io/posts/5.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -751,7 +820,15 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E5%A4%A7%E4%B8%80/">
+                                    <span class="chip bg-color">大一</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                                    <span class="chip bg-color">数据结构</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -1226,34 +1303,58 @@ new Valine({
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/baidu_verify_xxxxxxx.html">
+                <a href="/posts/5.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://s4.ax1x.com/2022/02/12/Hwikff.jpg" class="responsive-img" alt="">
+                        <img src="https://s4.ax1x.com/2022/02/12/Hwiu0s.jpg" class="responsive-img" alt="并查集">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">并查集</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            介绍解决动态连通性一类问题的一种算法，使用到了一种叫做并查集的数据结构。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-02
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-12
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            HeeKaai
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                    算法
+                                </a>
+                            
+                            <a href="/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                    数据结构
+                                </a>
+                            
+                            <a href="/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%8A%A8%E6%80%81%E8%BF%9E%E9%80%9A%E6%80%A7%E9%97%AE%E9%A2%98/" class="post-category">
+                                    动态连通性问题
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%A4%A7%E4%B8%80/">
+                        <span class="chip bg-color">大一</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="chip bg-color">数据结构</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -1261,37 +1362,64 @@ new Valine({
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/baidu_verify_xxxxxxx.html">
+                <a href="/posts/4.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://s4.ax1x.com/2022/02/12/Hwikff.jpg" class="responsive-img" alt="">
+                        <img src="https://s4.ax1x.com/2022/02/12/HwieXQ.jpg" class="responsive-img" alt="扩展欧几里得算法和中国剩余定理">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">扩展欧几里得算法和中国剩余定理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            从扩展欧几里得算法到CRT的模板。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-02
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-08
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            HeeKaai
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                    算法
+                                </a>
+                            
+                            <a href="/categories/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80/" class="post-category">
+                                    基础
+                                </a>
+                            
+                            <a href="/categories/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80/CRT%E6%A8%A1%E6%9D%BF/" class="post-category">
+                                    CRT模板
+                                </a>
+                            
+                            <a href="/categories/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80/CRT%E6%A8%A1%E6%9D%BF/%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/" class="post-category">
+                                    扩展欧几里得
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%A4%A7%E4%B8%80/">
+                        <span class="chip bg-color">大一</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%A8%A1%E6%9D%BF/">
+                        <span class="chip bg-color">模板</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -1456,6 +1584,13 @@ new Valine({
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
 
