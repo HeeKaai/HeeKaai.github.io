@@ -689,21 +689,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-03-09
+                    2022-03-14
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    6.6k
+                    6.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    29 分
+                    30 分
                 </div>
                 
 
@@ -1085,6 +1085,41 @@ int main ()
     str.replace(str.begin(),str.begin()+5,str2);
     cout&lt;&lt;str&lt;&lt;endl; //输出 Tomorrow is a nice day
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>（11）字符串和数字的相互转换</p>
+<ol>
+<li><p>数字-&gt;字符串（to_string函数）</p>
+<p>to_string（val）val的值能够自动判别类型，返回值是string；</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+int main (){
+	string s1,s2;
+	int x=4595;
+	s1=to_string(x);
+	cout&lt;&lt;s1&lt;&lt;endl;
+	long long y=123456789101112;
+	s2=to_string(y);
+	cout&lt;&lt;s2&lt;&lt;endl;
+	return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>字符串-&gt;数字</p>
+<p>常用的有stoi（）、stoll（）、stof（）、stod（），分别将字符串转化为int、long long、float、double类型的数字。依葫芦画瓢，其他类型同样是这样的形式。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+int main (){
+	string s1,s2;
+	s1="3.14159";
+	double pi=stod(s1);
+	cout&lt;&lt;pi&lt;&lt;endl;
+	s2="1234567891011121314";
+	long long x=stoll(s2);
+	cout&lt;&lt;x&lt;&lt;endl;
+	return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ol>
 <hr>
 <h1 id="set"><a href="#set" class="headerlink" title="set"></a>set</h1><p>set在英文中翻译为集合，<strong>是一个内部自动有序且不含重复元素的容器</strong>。如果要使用set容器，则需要在头文件中添加&lt; set &gt;。</p>
 <h2 id="set的定义"><a href="#set的定义" class="headerlink" title="set的定义"></a>set的定义</h2><p>set的定义的写法其实和vector基本上是一样的，或者说大部分STL容器都是这样定义的。</p>
@@ -2521,7 +2556,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">12.1k</span>&nbsp;字
+                class="white-color">12.3k</span>&nbsp;字
             
             
             
