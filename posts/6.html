@@ -684,14 +684,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    788
+                    1.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    8 分
                 </div>
                 
 
@@ -741,6 +741,7 @@ void Dijkstra(int s) //s为源点
 		if (u == -1)return; //剩下的点和顶点不连通
 		vis[u] = true;
 		for (int v = 0; v &lt; n; v++) //u作为中介点优化最短距离
+            //如果使用的是邻接表储存只有这句话需要改动
 		{
 			if (!vis[v] &amp;&amp; G[u][v] != INF)
 			{
@@ -749,7 +750,7 @@ void Dijkstra(int s) //s为源点
 			}
 		}
 	}
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>上面的代码一个很好理解，就是把提到的具体实现改写成了代码。</p>
 <p>再来看看复杂度，明显达到了O（2*n^2）的级别。那么考虑如何优化代码，将时间复杂度降低下来。</p>
 <p>显然，最外面的for循环来标记每一个顶点已被访问是必不可少的，寻找最小距离的顶点u是可以优化的，通常使用堆优化来降低时间复杂度。最简洁的方法自然是采用STL中的容器priority_queue来实现（每次弹出的元素一定是整个队列中最小的元素）。</p>
@@ -795,7 +796,161 @@ void Dijkstra(int s)
 <p>细细感受一下朴素算法和堆优化算法的区别，本质上其实是一模一样的。</p>
 <p>特别注意：<strong>Dijkstra算法只能应对所有边权都是非负的情况！</strong></p>
 <p>上面提到的都是最短距离的求解，下面将提到如何求解最短的路径。</p>
-<p>​      </p>
+<p>很显然，要得到最短路径，终点和起点是已知的，缺少的自然是中间的结点，要得到这些中间结点，自然而然会选择在以u为中介优化的部分来做文章。所以我们可以用一个数组pre来记录前驱结点的编号，在优化的时候赋值即可。</p>
+<p>代码实现也非常简单</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">const int INF = 0x3f3f3f3f;
+const int maxn = 107;
+
+int n, d[maxn]{};
+int G[maxn][maxn]{};
+bool vis[maxn]{};
+int pre[maxn]{};
+void Dijkstra(int s) 
+{
+	memset(vis, false, sizeof(vis)); 
+	fill(d, d + maxn, INF);
+	d[s] = 0;
+	for (int i = 0; i &lt; n; i++)
+	{
+		int u = -1, MIN = INF;
+		for (int j = 0; j &lt; n; j++)
+		{
+			if (!vis[j] &amp;&amp; d[j] &lt; MIN)
+			{
+				u = j;
+				MIN = d[j];
+			}
+		}
+		if (u == -1)return;
+		vis[u] = true;
+		for (int v = 0; v &lt; n; v++) 
+		{
+			if (!vis[v] &amp;&amp; G[u][v] != INF)
+			{
+				if (d[u] + G[u][v] &lt; d[v])
+                {
+                    d[v] = d[u] + G[u][v];
+                    pre[u]=v;
+                }
+			}
+		}
+	}
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>得到前驱数组pre后，利用dfs（在这里也就是递归）来实现路径的输出。</p>
+<p>代码非常简单：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int pre[maxn]{};
+void dfs(int s, int u)
+{
+	if (u == s) //边界
+	{
+		cout &lt;&lt; s;
+		return;
+	}
+	dfs(s, pre[u]);
+	cout &lt;&lt; u; //从最深处回来的时候输出路径上的结点
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>至此，Dijkstra算法的核心部分内容就差不多结束了，但是题目考查形式绝对不会赤裸裸，一定要注意其变化（通常会加上第二标度），但抽丝剥茧后，一定都有一个共同点：单源！！！</p>
+<p>例题：</p>
+<p><a target="_blank" rel="noopener" href="https://pintia.cn/problem-sets/994805046380707840/problems/994805073643683840">原题链接</a></p>
+<p>题意：（中文题面很好理解）n个顶点，m条无向边，每个点的点权已知。给出起点和终点，求从起点到终点是最短路径条数及最短路径上的最大点权和。</p>
+<p>思路：这题除了求解最短路径和最短距离外还要求求解最短路径条数和最大点权和，则在上面的代码中需要添加额外的信息来记录这两个量。w数组记录起点到其他点的最大点权之和；num数组记录起点到其他点的最短路径条数。n的范围在0-500，所以可以采用邻接矩阵的方式来存储图。</p>
+<p>AC代码：（该题包括上面提及的所有内容，综合考查Dijkstra算法）</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+#define FI freopen("in.txt", "r", stdin)
+#define FO freopen("out.txt", "w", stdout)
+typedef long long ll;
+typedef pair&lt;int, int&gt; pii;
+typedef list&lt;int&gt;::iterator lii;
+typedef vector&lt;int&gt;::iterator vii;
+const int INF = 0x3f3f3f3f;
+const int mod = 998244353;
+const int maxn = 507;
+int miin = INF, maax = -1;
+
+int n, m, s, d;
+int G[maxn][maxn]{};
+int w[maxn]{}, max_w[maxn]{};
+int num[maxn]{}, pre[maxn]{};
+bool vis[maxn]{};
+int D[maxn]{};
+void Dij()
+{
+	memset(vis, 0, sizeof(vis));
+	memset(max_w, 0, sizeof(max_w));
+	memset(num, 0, sizeof(num));
+	fill(D, D + maxn, INF);
+	D[s] = 0;
+	max_w[s] = w[s];
+	num[s] = 1;
+	for (int i = 0; i &lt; n; i++)
+	{
+		int u = -1, MIN = INF;
+		for (int j = 0; j &lt; n; j++)
+		{
+			if (!vis[j] &amp;&amp; D[j] &lt; MIN)
+			{
+				u = j;
+				MIN = D[j];
+			}
+		}
+		if (u == -1)return;
+		vis[u] = 1;
+		for (int v = 0; v &lt; n; v++)
+		{
+			if (!vis[v] &amp;&amp; G[u][v] != INF)
+			{
+				if (G[u][v] + D[u] &lt; D[v])
+				{
+					D[v] = D[u] + G[u][v];
+					pre[v] = u;
+					num[v] = num[u];
+					max_w[v] = max_w[u] + w[v];
+				}
+				else if (G[u][v] + D[u] == D[v])
+				{
+					if (max_w[u] + w[v] &gt; max_w[v])
+					{
+						max_w[v] = max_w[u] + w[v];
+						pre[v] = u;
+					}
+					num[v] += num[u];
+				}
+			}
+		}
+	}
+}
+void dfs(int x)
+{
+	if (x == s)
+	{
+		cout &lt;&lt; s &lt;&lt; " ";
+		return;
+	}
+	dfs(pre[x]);
+	if (x != d)
+		cout &lt;&lt; x &lt;&lt; " ";
+	else cout &lt;&lt; x &lt;&lt; endl;
+}
+int main() {
+	std::ios::sync_with_stdio(false);
+	std::cin.tie(0);
+	cin &gt;&gt; n &gt;&gt; m &gt;&gt; s &gt;&gt; d;
+	for (int i = 0; i &lt; n; i++)
+		cin &gt;&gt; w[i];
+	fill(G[0], G[0] + maxn * maxn, INF);
+	for (int i = 0; i &lt; m; i++)
+	{
+		int x, y, z;
+		cin &gt;&gt; x &gt;&gt; y &gt;&gt; z;
+		G[x][y] = z;
+		G[y][x] = z;
+	}
+	Dij();
+	cout &lt;&lt; num[d] &lt;&lt; " " &lt;&lt; max_w[d] &lt;&lt; endl;
+	dfs(d);
+	return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="Bellman-Ford算法"><a href="#Bellman-Ford算法" class="headerlink" title="Bellman-Ford算法"></a>Bellman-Ford算法</h1><h1 id="SPFA算法"><a href="#SPFA算法" class="headerlink" title="SPFA算法"></a>SPFA算法</h1><h1 id="Floyd算法"><a href="#Floyd算法" class="headerlink" title="Floyd算法"></a>Floyd算法</h1>
                 
             </div>
@@ -1694,7 +1849,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">13.1k</span>&nbsp;字
+                class="white-color">14.1k</span>&nbsp;字
             
             
             
