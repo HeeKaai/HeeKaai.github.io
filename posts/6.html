@@ -677,21 +677,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-03-22
+                    2022-03-27
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.7k
+                    2.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    10 分
                 </div>
                 
 
@@ -710,7 +710,8 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>[TOC]</p>
-<h1 id="Dijkstra算法"><a href="#Dijkstra算法" class="headerlink" title="Dijkstra算法"></a>Dijkstra算法</h1><p>Dijkstra算法用来解决<strong>单源最短路问题</strong>（划重点），也即：给定图和一个起点（源点），求解从源点到达其它顶点的最短路径。</p>
+<h1 id="Dijkstra算法"><a href="#Dijkstra算法" class="headerlink" title="Dijkstra算法"></a>Dijkstra算法</h1><p>Dijkstra算法可以读作迪杰斯特拉算法。</p>
+<p>Dijkstra算法用来解决<strong>单源最短路问题</strong>（划重点），也即：给定图和一个起点（源点），求解从源点到达其它顶点的最短路径。</p>
 <p>具体实现：</p>
 <p>（1）用一个bool型的数组来区分表示某个顶点是否已经访问过了，用一个数组记录源点到各顶点的最短距离并初始化（为INF），然后执行（2）-（3）步骤n次（一共n个顶点）。</p>
 <p>（2）每次从未访问过的顶点中，选择一个与源点距离最短的一个顶点（记作u），访问该顶点。</p>
@@ -830,13 +831,13 @@ void Dijkstra(int s)
 				if (d[u] + G[u][v] &lt; d[v])
                 {
                     d[v] = d[u] + G[u][v];
-                    pre[u]=v;
+                    pre[v]=u;
                 }
 			}
 		}
 	}
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>得到前驱数组pre后，利用dfs（在这里也就是递归）来实现路径的输出。</p>
+<p>得到前驱数组pre后，利用dfs（在这里也就是递归的方法）来实现路径的输出。</p>
 <p>代码非常简单：</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int pre[maxn]{};
 void dfs(int s, int u)
@@ -951,7 +952,57 @@ int main() {
 	dfs(d);
 	return 0;
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="Bellman-Ford算法"><a href="#Bellman-Ford算法" class="headerlink" title="Bellman-Ford算法"></a>Bellman-Ford算法</h1><h1 id="SPFA算法"><a href="#SPFA算法" class="headerlink" title="SPFA算法"></a>SPFA算法</h1><h1 id="Floyd算法"><a href="#Floyd算法" class="headerlink" title="Floyd算法"></a>Floyd算法</h1>
+<h1 id="Bellman-Ford算法"><a href="#Bellman-Ford算法" class="headerlink" title="Bellman-Ford算法"></a>Bellman-Ford算法</h1><h1 id="SPFA算法"><a href="#SPFA算法" class="headerlink" title="SPFA算法"></a>SPFA算法</h1><h1 id="Floyd算法"><a href="#Floyd算法" class="headerlink" title="Floyd算法"></a>Floyd算法</h1><p>Floyd算法读作弗洛伊德算法。</p>
+<p>Floyd算法用来解决<strong>全源最短路问题</strong>，也即求解给定图中任意两点之间的最短路问题，时间复杂度是O（n^3）的级别。所以顶点数通常在200以内才会选择Floyd算法，因为顶点数不多，所以通常使用邻接矩阵来实现Floyd算法。</p>
+<p>有类似于Dijkstra算法的基础，同样的道理，可以借助第三点k点作为中介点来对u、v两点之间的距离进行一个优化，非常好理解，所以我们通过枚举中介点1-n（n为图的顶点数）来进行全源最短路的优化。</p>
+<p>代码非常好写：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+const int INF = 0x3f3f3f3f;
+const int maxn = 107
+
+int n, m;
+int d[maxn][maxn]{};
+int pre[maxn][maxn]{};
+void Floyd()
+{
+	for (int k = 0; k &lt; n; k++)
+	{
+		for (int i = 0; i &lt; n; i++)
+		{
+			for (int j = 0; j &lt; n; j++)
+			{
+				if (d[i][k] != INF &amp;&amp; d[k][j] != INF)
+				{
+					if (d[i][k] + d[k][j] &lt; d[i][j])
+					{
+						d[i][j] = d[i][k] + d[k][j];
+						pre[i][j] = k;
+					}
+				}
+			}
+		}
+	}
+}
+int main() {
+	std::ios::sync_with_stdio(false);
+	std::cin.tie(0);
+	fill(d[0], d[0] + maxn * maxn, INF);
+	cin &gt;&gt; n &gt;&gt; m;//顶点数与边数
+	for (int i = 1; i &lt; n; i++)
+		d[i][i] = 0;
+	for (int i = 0; i &lt; m; i++)
+	{
+		int x, y, w;
+		cin &gt;&gt; x &gt;&gt; y &gt;&gt; w;
+		d[x][y] = w;
+	}
+	return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>注意使用Floyd算法的条件是顶点数在200以内，因为算法的时间复杂度为O（n^3）,对于顶点数过多的题目，则不宜使用Floyd算法进行求解。</p>
+<p>END</p>
+
                 
             </div>
             <hr/>
@@ -1849,7 +1900,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">14.1k</span>&nbsp;字
+                class="white-color">14.5k</span>&nbsp;字
             
             
             
