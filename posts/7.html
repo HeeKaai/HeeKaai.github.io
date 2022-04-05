@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="放松一下, HeeKaai 计算机 算法笔记 人间失格">
+    <meta name="keywords" content="图--最小生成树问题, HeeKaai 计算机 算法笔记 人间失格">
     <meta name="description" content="本科 | 计算机科学与技术 | 算法笔记">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -18,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>放松一下 | 人间失格</title>
+    <title>图--最小生成树问题 | 人间失格</title>
 
     <link rel="icon" type="image/jpeg" href="https://s4.ax1x.com/2022/01/02/TTxWtK.jpg">
 
@@ -511,12 +511,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://s4.ax1x.com/2022/02/12/HwAC79.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://s4.ax1x.com/2022/02/12/Hwiu0s.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">放松一下</h1>
+                    <h1 class="description center-align post-title">图--最小生成树问题</h1>
                 </div>
             </div>
         </div>
@@ -635,12 +635,33 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%A4%A7%E4%B8%80/">
+                                <span class="chip bg-color">大一</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%9B%BE%E8%AE%BA/">
+                                <span class="chip bg-color">图论</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                算法
+                            </a>
+                        
+                            <a href="/categories/%E7%AE%97%E6%B3%95/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" class="post-category">
+                                最小生成树
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -649,28 +670,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-08-10
+                    2022-04-05
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-02
+                    2022-04-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    6
+                    1.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    6 分
                 </div>
                 
 
@@ -688,8 +709,169 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="影音资源共享"><a href="#影音资源共享" class="headerlink" title="影音资源共享"></a>影音资源共享</h1>
-<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;"><iframe src="//player.bilibili.com/player.html?aid=2979186&amp;cid=4667585&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;"></iframe></div>
+                <p>前提引入：</p>
+<p>最小生成树：图G的生成子图中包含G中所有顶点，并且所有顶点是连通的，而且边权之和最小。</p>
+<p>最小生成树是一棵树（边数比顶点数少一的连通图），导出该最小生成树的图应该为无向图。</p>
+<p>对于同一个图而言，最小生成树不一定唯一，但其边权之和一定是唯一的。</p>
+<p>下面介绍的是求解最小生成树的两种最经典的算法：prim算法和kruskal算法，都是利用贪心的基本算法原理来实现最小生成树的生成。</p>
+<p>[TOC]</p>
+<h1 id="prim算法"><a href="#prim算法" class="headerlink" title="prim算法"></a>prim算法</h1><p>prim算法读作普利姆算法。</p>
+<p>如果有Dijkstra算法的基础的话，prim算法的思想就能够轻松的理解了（思路大同小异）。prim算法实现的基本思路如下：</p>
+<p>（1）使用一个bool型的数组vis，其下标 i 用来表示顶点 i 是否已经被访问过。</p>
+<p>（2）保证依次访问的顶点是连通的（也一定是连通的），不妨令这个连通块为S，再使用一个 int 型的数组d，用该数组来存放尚未到达的顶点离当前连通块S的最小距离。</p>
+<p>（3）从根节点（题目给出或任取一点而一般默认选取字典序最小的）出发依次访问离连通块距离最小的顶点u，并将u加入连通块，且不断优化数组 d 存放的值。</p>
+<p>看完prim算法的思路是不是觉得和Dijkstra算法特别像（细细品味一下它们之间的联系与区别）。</p>
+<p>其实也就只有 d 数组的含义不同罢了，可以参考两个算法的代码进行参照，可以更加清楚直观的看到差别。</p>
+<p>代码实现： （朴素的邻接表版本）</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">const int INF = 0x3f3f3f3f;
+const int maxn = 3007;
+
+struct edge {
+	int to, val;
+	edge(int a, int b) :to(a), val(b) {};
+};
+vector&lt;edge&gt;G[maxn];
+int n, d[maxn];  // n-&gt;顶点数
+bool vis[maxn]{};
+// 默认0为根节点,根据题目调整
+int prim()
+{
+	fill(d, d + maxn, INF);
+	d[0] = 0;
+	int ans = 0;
+	for (int i = 0; i &lt; n; i++)
+	{
+		int u = -1, miin = INF;
+		for (int j = 0; j &lt; n; j++)
+		{
+			if (!vis[j] &amp;&amp; d[j] &lt; miin)
+			{
+				u = j;
+				miin = d[j];
+			}
+		}
+		if (u == -1)return -1; //不连通
+		vis[u] = 1;
+		ans += d[u];
+		for (int j = 0; j &lt; G[u].size(); j++)
+		{
+			int v = G[u][j].to, val = G[u][j].val;
+			if (!vis[v] &amp;&amp; val &lt; d[v])
+				d[v] = val;
+		}
+	}
+	return ans;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>同样的也能够通过堆来对时间复杂度进行优化。</p>
+<p>代码实现：（堆+邻接表）</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">typedef pair&lt;int, int&gt; pii;
+const int INF = 0x3f3f3f3f;
+const int maxn = 3007;
+
+struct edge {
+	int to, val;
+	edge(int a, int b) :to(a), val(b) {};
+};
+vector&lt;edge&gt;G[maxn];
+int n, d[maxn];
+bool vis[maxn]{};
+int prim(int s)
+{
+	priority_queue&lt;pii, vector&lt;pii&gt;, greater&lt;pii&gt; &gt;pq;
+	fill(d, d + maxn, INF);
+	int ans = 0;
+	d[s] = 0;
+	pii p(d[s], s);
+	pq.push(p);
+	while (!pq.empty())
+	{
+		p = pq.top();
+		pq.pop();
+		int u = p.second;
+		if (vis[u])continue;
+		vis[u] = 1;
+		ans += d[u];
+		for (int j = 0; j &lt; G[u].size(); j++)
+		{
+			int v = G[u][j].to, val = G[u][j].val;
+			if (!vis[v] &amp;&amp; d[v] &gt; val)
+			{
+				d[v] = val;
+				pq.push(pii(val, v));
+			}
+		}
+	}
+	return ans;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3366">模板题链接</a></p>
+<p>上面的代码已经给出了核心部分，做此类题一定要注意数据范围。</p>
+<hr>
+<h1 id="kruskal算法"><a href="#kruskal算法" class="headerlink" title="kruskal算法"></a>kruskal算法</h1><p>kruskal算法读作克鲁斯卡尔算法。</p>
+<p>kruskal算法采用对边的选取进行贪心策略（树一定是选取顶点数-1条边），所以每次选择相对最优的边（满足条件的边中权值最小的），这里的条件是指保证生成的是一棵树。</p>
+<p>所以看起来kruskal算法的思想相对而言更加简单易懂。</p>
+<p>算法实现过程：</p>
+<p>（1）初始时，每个结点自成一个连通块。</p>
+<p>（2）对所有的边从小到大进行排序。</p>
+<p>（3）每次选取最小的那条边，如果这条边连接的两个顶点所在的连通块是不同的，就选择这条边，并将两个连通块连通起来。</p>
+<p>（4）当选取的边达到顶点数-1时，跳出；如果遍历完所有的边，选择的边不足顶点数-1，则可以说明此图是不连通的。</p>
+<p>那么如何实现判断两个结点所在的连通块是否连通呢？无疑，并查集是最佳选择。</p>
+<p><a href="https://heekaai.github.io/posts/5.html">并查集的使用可以参看之前的博客</a></p>
+<p>并查集的查找功能通过查找两个结点的根节点是否相同实现判断两个结点所在的连通块是否连通，并查集的合并功能则可以将不同的连通块进行合并。</p>
+<p>有了上面介绍的基础，就可以轻松的把代码写出来了。</p>
+<p>代码实现如下：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">const int INF = 0x3f3f3f3f;
+const int maxn = 3007;
+
+struct edge {
+	int u, v;
+	int w;
+	edge(int a, int b, int c) :u(a), v(b), w(c) {};
+};
+
+vector&lt;edge&gt;E;
+
+int father[maxn]{};
+int n, m; //顶点数和边数
+
+int find_root(int x)
+{
+	if (x == father[x])
+		return x;
+	else {
+		int F = find_root(father[x]);
+		father[x] = F;
+		return F;
+	}
+}
+
+bool cmp(edge a, edge b) {
+	return a.w &lt; b.w;
+}
+
+int kruskal()
+{
+	for (int i = 1; i &lt;= n; i++)
+		father[i] = i;
+	sort(E.begin(), E.begin() + m, cmp);
+	int ans = 0, cnt = 0; //边权之和当前已经选取了的边数
+	for (int i = 0; i &lt; m; i++)
+	{
+		int u = E[i].u, v = E[i].v;
+		int Fu = find_root(u), Fv = find_root(v);
+		if (Fu != Fv)
+		{
+			father[Fu] = Fv;
+			ans += E[i].w;
+			cnt++;
+		}
+		if (cnt == n - 1)break;
+	}
+	if (cnt &lt; n - 1)return -1;
+	else return ans;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>对比一下两种算法：</p>
+<p>kruskal算法时间复杂度主要花销在对边进行排序上，如果在边比较少而点比较多的情况下，优先考虑采用kruskal算法；相对应的，如果在边比较多而点相对少的情况下，优先考虑采用prim算法。</p>
+<p>END</p>
 
                 
             </div>
@@ -716,7 +898,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://heekaai.github.io/List/index.html">https://heekaai.github.io/List/index.html</a>
+                    <a href="https://heekaai.github.io/posts/7.html">https://heekaai.github.io/posts/7.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -753,7 +935,15 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E5%A4%A7%E4%B8%80/">
+                                    <span class="chip bg-color">大一</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%9B%BE%E8%AE%BA/">
+                                    <span class="chip bg-color">图论</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -1228,34 +1418,54 @@ new Valine({
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/List/index.html">
+                <a href="/posts/7.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://s4.ax1x.com/2022/02/12/HwAC79.jpg" class="responsive-img" alt="放松一下">
+                        <img src="https://s4.ax1x.com/2022/02/12/Hwiu0s.jpg" class="responsive-img" alt="图--最小生成树问题">
                         
-                        <span class="card-title">放松一下</span>
+                        <span class="card-title">图--最小生成树问题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            介绍解决图论中最小生成树的两种经典算法：prim算法和kruskal算法。 
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-08-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-05
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            HeeKaai
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                    算法
+                                </a>
+                            
+                            <a href="/categories/%E7%AE%97%E6%B3%95/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" class="post-category">
+                                    最小生成树
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%A4%A7%E4%B8%80/">
+                        <span class="chip bg-color">大一</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%9B%BE%E8%AE%BA/">
+                        <span class="chip bg-color">图论</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -1263,37 +1473,56 @@ new Valine({
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/List/index.html">
+                <a href="/posts/6.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://s4.ax1x.com/2022/02/12/HwAC79.jpg" class="responsive-img" alt="放松一下">
+                        <img src="https://s4.ax1x.com/2022/02/12/HwA90J.jpg" class="responsive-img" alt="图--最短路径问题">
                         
-                        <span class="card-title">放松一下</span>
+                        <span class="card-title">图--最短路径问题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            介绍解决图论中的最短路径问题的几种算法。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-08-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-22
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            HeeKaai
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                    算法
+                                </a>
+                            
+                            <a href="/categories/%E7%AE%97%E6%B3%95/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/" class="post-category">
+                                    最短路径
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%A4%A7%E4%B8%80/">
+                        <span class="chip bg-color">大一</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%9B%BE%E8%AE%BA/">
+                        <span class="chip bg-color">图论</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -1458,6 +1687,13 @@ new Valine({
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
 
