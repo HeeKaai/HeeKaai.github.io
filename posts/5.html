@@ -44,7 +44,7 @@
 <meta name="generator" content="Hexo 5.2.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="人间失格" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+</head>
 
 
 
@@ -715,28 +715,28 @@
             <div id="articleContent">
                 <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>并查集是一种维护集合的数据结构，用以解决动态连通性问题。顾名思义，“并”—“合并”—“Union”；“查”—“查找”—“Find”；“集”—“集合”—“Set”。主要需要支持查找和合并两个操作。</p>
 <p>通常而言，并查集使用一个数组来实现：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c">int father[N];<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> father<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>数组含义如下：</p>
 <p>$father[i]$表示元素 i 的父亲结点，其父亲结点也一定是这个集合里的元素。特别的，如果$father[i]=i$,则说明元素i是该集合的根节点，且对同一个集合只存在一个根节点，所以根节点也是这个集合的一个重要标识。</p>
-<h1 id="基本操作的实现"><a href="#基本操作的实现" class="headerlink" title="基本操作的实现"></a>基本操作的实现</h1><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c">int father[N]{};
-void init()
-{
-	for(int i=1;i&lt;N;i++)
-		father[i]=i;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="基本操作的实现"><a href="#基本操作的实现" class="headerlink" title="基本操作的实现"></a>基本操作的实现</h1><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> father<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>N<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+		father<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>i<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>初始化每一个元素都是根节点，独立成一个元素。</p>
 <h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><p>通过递归实现</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c">int find_root(int x){
-	if(x==father[x])return x;
-	else return find_root((father[x]));
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">find_root</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span><span class="token punctuation">{</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span>x<span class="token operator">==</span>father<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token keyword">return</span> x<span class="token punctuation">;</span>
+	<span class="token keyword">else</span> <span class="token keyword">return</span> <span class="token function">find_root</span><span class="token punctuation">(</span><span class="token punctuation">(</span>father<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h3><p>合并是指把两个集合合并成一个集合，<strong>只有两个集合是不同集合时，才能够合并。</strong>合并的过程是把一个集合的根节点的父亲指向另一个集合的根节点。</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c">void Union(int a,int b){
-	int faA=find_root(a);
-	int faB=find_root(b);
-	if(faA==faB)return;
-	father[faB]=faA;  //father[faA]=faB也是可以的
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">Union</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span><span class="token keyword">int</span> b<span class="token punctuation">)</span><span class="token punctuation">{</span>
+	<span class="token keyword">int</span> faA<span class="token operator">=</span><span class="token function">find_root</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">int</span> faB<span class="token operator">=</span><span class="token function">find_root</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span>faA<span class="token operator">==</span>faB<span class="token punctuation">)</span><span class="token keyword">return</span><span class="token punctuation">;</span>
+	father<span class="token punctuation">[</span>faB<span class="token punctuation">]</span><span class="token operator">=</span>faA<span class="token punctuation">;</span>  <span class="token comment">//father[faA]=faB也是可以的</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>特别注意：</p>
 <ol>
 <li>一定是根节点和根节点的互相指向关系。</li>
@@ -747,14 +747,14 @@ void init()
 <p>这样处理之后，每一个子元素的查询时间复杂度是不是就可以降至O（1）。</p>
 <p>现在，只需要把这样的处理改写成代码即可。</p>
 <p>还是递归的写法：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c">int find_root(int x){
-	if(x==father[x])return x;
-	else{
-		int F=find_root(father[x]); //寻找到根结点
-		father[x]=F;
-		return F;
-	}
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">find_root</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span><span class="token punctuation">{</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span>x<span class="token operator">==</span>father<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token keyword">return</span> x<span class="token punctuation">;</span>
+	<span class="token keyword">else</span><span class="token punctuation">{</span>
+		<span class="token keyword">int</span> F<span class="token operator">=</span><span class="token function">find_root</span><span class="token punctuation">(</span>father<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//寻找到根结点</span>
+		father<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span>F<span class="token punctuation">;</span>
+		<span class="token keyword">return</span> F<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在寻找的时候，实现了路径上的元素的路径压缩。</p>
 <h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><p>放上一道例题（并查集的裸题）：</p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/277/A">Learning Languages</a></p>
@@ -1516,7 +1516,7 @@ new Valine({
 
         var selection = window.getSelection();
         // if the selection is short let's not annoy our users.
-        if (('' + selection).length < Number.parseInt('388')) {
+        if (('' + selection).length < Number.parseInt('1388')) {
             return;
         }
 

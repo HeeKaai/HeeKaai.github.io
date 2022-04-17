@@ -44,7 +44,7 @@
 <meta name="generator" content="Hexo 5.2.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="人间失格" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+</head>
 
 
 
@@ -857,11 +857,11 @@ int main()
 	return 0;
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>很明显可以发现，一级排序仅仅只会排序结构体中的第一个变量，若想实现第二个变量的排序，只需改变cmp函数的写法</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c">bool cmp(test a, test b)
-{
-	if (a.x != b.x)return a.x &lt; b.x;
-	else return a.y &gt; b.y;
-}//x从小到大，y从大到小的顺序<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">bool <span class="token function">cmp</span><span class="token punctuation">(</span>test a<span class="token punctuation">,</span> test b<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>a<span class="token punctuation">.</span>x <span class="token operator">!=</span> b<span class="token punctuation">.</span>x<span class="token punctuation">)</span><span class="token keyword">return</span> a<span class="token punctuation">.</span>x <span class="token operator">&lt;</span> b<span class="token punctuation">.</span>x<span class="token punctuation">;</span>
+	<span class="token keyword">else</span> <span class="token keyword">return</span> a<span class="token punctuation">.</span>y <span class="token operator">&gt;</span> b<span class="token punctuation">.</span>y<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token comment">//x从小到大，y从大到小的顺序</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>类似的可以进行扩展。</p>
 </li>
 <li><p>STL容器的排序</p>
@@ -1663,7 +1663,7 @@ new Valine({
 
         var selection = window.getSelection();
         // if the selection is short let's not annoy our users.
-        if (('' + selection).length < Number.parseInt('388')) {
+        if (('' + selection).length < Number.parseInt('1388')) {
             return;
         }
 

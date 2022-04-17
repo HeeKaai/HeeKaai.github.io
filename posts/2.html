@@ -44,7 +44,7 @@
 <meta name="generator" content="Hexo 5.2.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="人间失格" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+</head>
 
 
 
@@ -978,7 +978,7 @@ string str="abcd"; //赋值<span aria-hidden="true" class="line-numbers-rows"><s
 <p>一般而言，可以像访问字符数组那样通过下标对string容器进行访问。</p>
 <p>（2）通过迭代器访问：</p>
 <p>定义迭代器：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c">string::iterator it; //string类型无其他参数<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">string<span class="token operator">::</span>iterator it<span class="token punctuation">;</span> <span class="token comment">//string类型无其他参数</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>关于使用迭代器对string容器中的元素进行访问的方法，类似于上文中的vector容器，在这里就不做过多阐述，可以参照上文。</p>
 <p>如果要读入和输出整个字符串，则只能使用cin和cout。</p>
 <p>最后需要注意的一点，string和vector一样，<strong>支持直接对迭代器进行加减某个数字</strong>，比如说str.begin（）+2 的写法是合法的。而对于STL的其他容器，则不支持这种写法。</p>
@@ -2330,7 +2330,7 @@ new Valine({
 
         var selection = window.getSelection();
         // if the selection is short let's not annoy our users.
-        if (('' + selection).length < Number.parseInt('388')) {
+        if (('' + selection).length < Number.parseInt('1388')) {
             return;
         }
 
