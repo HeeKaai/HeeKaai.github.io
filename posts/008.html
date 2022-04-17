@@ -585,14 +585,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    873
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    6 分
                 </div>
                 
 
@@ -764,6 +764,86 @@ int main() {
 	cout &lt;&lt; (ans + mod*2) % mod &lt;&lt; endl;
 	return 0;
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>2、<a target="_blank" rel="noopener" href="https://172.16.79.125/contest/view.action?cid=844#problem/C">原题链接</a></p>
+<p>题面描述：原题描述的非常清楚没有什么地方需要解释的</p>
+<p>递推：</p>
+<p><img src="https://s1.ax1x.com/2022/04/17/LUItDs.jpg" alt="推导过程"></p>
+<p>利用递推公式和快速幂的知识，就能够轻松的解决此题了</p>
+<p>AC代码：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+#define FI freopen("in.txt", "r", stdin)
+#define FO freopen("out.txt", "w", stdout)
+#define mst(a) memset(a,0,sizeof(a))
+typedef long long ll;
+typedef pair&lt;int, int&gt; pii;
+const int INF = 0x3f3f3f3f;
+const int mod = 1000000007;
+const int maxn = 107;
+const double eps = 1e-11;
+
+int k, m;
+int xx[maxn][maxn]{}, f[13]{};
+int res[maxn][maxn]{}, temp[maxn][maxn]{};
+
+void matrix_mul(int a[][maxn], int b[][maxn], int n)
+{
+	mst(temp);
+	for(int i=1;i&lt;=n;i++)
+	for(int j=1;j&lt;=n;j++)
+		for (int k = 1; k &lt;= n; k++)
+		{
+			temp[i][j] += (a[i][k] * b[k][j]);
+			temp[i][j] %= m;
+	}
+	for (int i = 1; i &lt;= n; i++)
+		for (int j = 1; j &lt;= n; j++)
+			a[i][j] = temp[i][j];
+	return;
+}
+
+void matrix_ksm(int a[][maxn], int power, int n)
+{
+	mst(res);
+	for (int i = 1; i &lt;= n; i++)
+		res[i][i] = 1;
+	while (power)
+	{
+		if (power &amp; 1)
+			matrix_mul(res, a, n);
+		power /= 2;
+		matrix_mul(a, a, n);
+	}
+}
+
+int main() {
+	std::ios::sync_with_stdio(false);
+	std::cin.tie(0);
+	for (int i = 1; i &lt;= 10; i++)
+		f[i] = 10 - i;
+	while (cin &gt;&gt; k &gt;&gt; m)
+	{
+		mst(xx);
+		for (int i = 0; i &lt;= 9; i++)
+			cin &gt;&gt; xx[i + 1][1];
+		for (int i = 1; i &lt;= 9; i++)
+			xx[i][i + 1] = 1;
+		if (k &lt; 9)
+		{
+			cout &lt;&lt; (k + m) % m &lt;&lt; endl;
+			continue;
+		}
+		matrix_ksm(xx, k - 9, 10);
+		int ans = 0;
+		for (int i = 1; i &lt;= 10; i++)
+		{
+			ans += (res[i][1] * f[i]);
+			ans %= m;
+		}
+		cout &lt;&lt; ans &lt;&lt; endl;
+	}
+	return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -1564,7 +1644,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">18.2k</span>&nbsp;字
+                class="white-color">18.5k</span>&nbsp;字
             
             
             
