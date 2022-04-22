@@ -578,21 +578,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-04-17
+                    2022-04-22
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    9 分
                 </div>
                 
 
@@ -844,6 +844,92 @@ int main() {
 	}
 	return 0;
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>3、<a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/showproblem.php?pid=1588">原题链接HDU-1588</a></p>
+<p>思路：题目意思非常简洁明了，这题用到矩阵快速幂的知识很简单（表示斐波那契数列的第n项，有上面的基础很容易表示，在这里不做出推导了），第二个考点无非就是等比数列求和的矩阵形式，同样可以用二分解决，下面的图片是核心思路。</p>
+<p>（斐波那契数列矩阵表示如下）</p>
+<p><img src="https://s1.ax1x.com/2022/04/22/LRd328.png" alt="斐波那契数列递推公式"></p>
+<p>（用二分解决等比数列求和，在这里每一项改成矩阵罢了）</p>
+<p><img src="https://s1.ax1x.com/2022/04/21/LcjWz6.jpg" alt="等比数列求和"></p>
+<p><img src="https://s1.ax1x.com/2022/04/21/LcjhQK.jpg" alt="等比数列求和"></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+#define FI freopen("in.txt", "r", stdin)
+#define FO freopen("out.txt", "w", stdout)
+#define mst(a) memset(a,0,sizeof(a))
+#define int long long
+typedef pair&lt;int, int&gt; pii;
+const int INF = 0x3f3f3f3f;
+const int mod = 1000000007;
+const int maxn = 7;
+const double eps = 1e-11;
+
+int k, b, n, m;
+struct Mat {
+	int a[maxn][maxn]{};
+};
+
+Mat mul(Mat m1, Mat m2) {
+	Mat ans;
+	mst(ans.a);
+	for (int i = 1; i &lt;= 2; i++)
+		for (int j = 1; j &lt;= 2; j++)
+			for (int k = 1; k &lt;= 2; k++) {
+				ans.a[i][j] += m1.a[i][k] * m2.a[k][j];
+				ans.a[i][j] %= m;
+			}
+	return ans;
+}
+
+Mat ksm(Mat m, int power) {
+	Mat ans;
+	mst(ans.a);
+	for (int i = 1; i &lt;= 2; i++)ans.a[i][i] = 1;
+	while (power) {
+		if (power &amp; 1)ans = mul(ans, m);
+		power &gt;&gt;= 1;
+		m = mul(m, m);
+	}
+	return ans;
+}
+
+Mat add(Mat m1, Mat m2) {
+	Mat ans;
+	mst(ans.a);
+	for (int i = 1; i &lt;= 2; i++)
+		for (int j = 1; j &lt;= 2; j++) {
+			ans.a[i][j] = m1.a[i][j] + m2.a[i][j];
+			ans.a[i][j] %= m;
+		}
+	return ans;
+}
+
+Mat sum(Mat m, int n) {
+	if (n == 1)return m;
+	if (n &amp; 1) {
+		return add(sum(m, n - 1), ksm(m, n));
+	}
+	else {
+		Mat tmp;
+		tmp = sum(m, n / 2);
+		return add(tmp, mul(tmp, ksm(m, n / 2)));
+	}
+}
+
+signed main() {
+	std::ios::sync_with_stdio(false);
+	std::cin.tie(0);
+	while (cin &gt;&gt; k &gt;&gt; b &gt;&gt; n &gt;&gt; m) {
+		Mat E;
+		mst(E.a);
+		E.a[1][1] = E.a[2][2] = 1;
+		Mat A;
+		mst(A.a);
+		A.a[1][1] = A.a[2][1] = A.a[1][2] = 1;
+		Mat ans = mul(ksm(A, b), add(E, sum(ksm(A, k), n - 1)));
+		cout &lt;&lt; ans.a[1][2] &lt;&lt; endl;
+	}
+	return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -1644,7 +1730,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">18.5k</span>&nbsp;字
+                class="white-color">19k</span>&nbsp;字
             
             
             
