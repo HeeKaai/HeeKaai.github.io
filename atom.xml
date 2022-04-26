@@ -6,7 +6,7 @@
   <link href="https://heekaai.github.io/atom.xml" rel="self"/>
   
   <link href="https://heekaai.github.io/"/>
-  <updated>2022-04-22T13:20:17.605Z</updated>
+  <updated>2022-04-26T11:04:40.690Z</updated>
   <id>https://heekaai.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>最大匹配问题</title>
+    <link href="https://heekaai.github.io/posts/009.html"/>
+    <id>https://heekaai.github.io/posts/009.html</id>
+    <published>2022-04-26T07:27:45.000Z</published>
+    <updated>2022-04-26T11:04:40.690Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><p>前提：讨论的是二分简单图</p><h2 id="如何判断是否为二分图"><a href="#如何判断是否为二分图" class="headerlink" title="如何判断是否为二分图"></a>如何判断是否为二分图</h2><p>定义：如果某个图为二分图，那么它至少有两个顶点，且其所有回路的长度均为偶数，任何无回路的的图均是二分图。</p><p>方法：利用标点（或者染色）法，假设图G有v个结点、e条边，从任一结点出发（其标记为 x ），遍历所有与其邻接的结点，如果其邻接的结点未被访问过，就将其标记为 -x ，如果其邻接的结点被访问过，判断其标号是否为 x ，若为 x 则不是二分图，直至将全部结点都访问，所有邻接的结点的标号是不同的，则该图为二分图。</p><p>代码实现：</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;bits/stdc++.h&gt;using namespace std;const int maxn = 207;int n, m;vector&lt;int&gt;G[maxn];int colo[maxn]{};bool dfs(int u, int c){colo[u] = c;for (int i = 0; i &lt; G[u].size(); i++){int v = G[u][i];if (colo[v] == c)return 0;if (colo[v] == 0 &amp;&amp; !dfs(v, (-1 * c)))return 0;}return 1;}signed main() {std::ios::sync_with_stdio(false);std::cin.tie(0);cin &gt;&gt; n &gt;&gt; m;for (int i = 1; i &lt;= m; i++){int u, v;cin &gt;&gt; u &gt;&gt; v;G[u].push_back(v);G[v].push_back(u);}bool ok = 1;for (int i = 1; i &lt;= n; i++){if (!colo[i]){if (!dfs(i, 1)){ok = 0;break;}}}if (ok)cout &lt;&lt; "该图是二分图" &lt;&lt; endl;else cout &lt;&lt; "该图不是二分图" &lt;&lt; endl;return 0;}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><p>交错路径：给定图G的一个匹配 M ,如果一条路径的边交替出现在M和不出现在M中，则将这条路径称为一条M-交错路径。</p><p>增广路径：如果一条交错路径的两个端点是非饱和点（不与匹配的边相关联），我们称这条路径为增广路径。</p><p>Hall定理：对于一个二部图G~(<em>X</em>,<em>Y</em>)，X存在一个匹配的充分必要条件为对于X的任意子集S，S的邻居个数N(S)必须大于等于S的大小|S|。</p><p>最大匹配：若当前M中不存在增广路径，则M为最大匹配。（对于一个图而言，最大匹配可能不唯一，但最大匹配数是唯一确定的）</p><h1 id="匈牙利算法"><a href="#匈牙利算法" class="headerlink" title="匈牙利算法"></a>匈牙利算法</h1><p>匈牙利算法的核心思路：在当前已经确定的匹配中，不断寻找增广路径，直至不存在增广路径。</p><p>代码实现：“先到先得，能让则让”</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;bits/stdc++.h&gt;#define mst(a) memset(a,0,sizeof(a))using namespace std;const int maxn = 107;int n, m; //二分图两个顶点集的大小bool vis[maxn] {}; //标记B中结点是否被访问int p[maxn] {}; //当前B中的结点的邻接结点为p[i]int mp[maxn][maxn] {}; //邻接表存二分图G（A-&gt;B）bool match(int u) {for (int v = 1; v &lt;= m; v++) {if (mp[u][v] &amp;&amp; !vis[v]) {vis[v] = 1;if (p[v] == 0 || match(p[v])) {p[v] = u;return 1;}}}return 0;}void sovle() {int cnt = 0;for (int i = 1; i &lt;= n; i++) {mst(vis); //每次都需要重置visif (match(i))cnt++;}cout &lt;&lt; cnt &lt;&lt; endl;}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>仔细体会：“先到先得，能让则让”，在match函数的递归过程中，这八个字可以说被体现的淋漓尽致。</p><p>用例题来具体感受一下</p><h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p><a href="https://172.16.79.125/problem/viewProblem.action?id=9070">原题链接POJ-1274</a></p><p>匈牙利算法的纯裸题，直接放代码</p><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;bits/stdc++.h&gt;using namespace std;#define FI freopen("in.txt", "r", stdin)#define FO freopen("out.txt", "w", stdout)#define mst(a) memset(a,0,sizeof(a))#define int long longtypedef pair&lt;int, int&gt; pii;const int INF = 0x3f3f3f3f;const int mod = 1000000007;const int maxn = 207;const double eps = 1e-11;int n, m;int mp[maxn][maxn]{};bool vis[maxn]{};int p[maxn]{};bool match(int u){for (int v = 1; v &lt;= m; v++){if (mp[u][v] &amp;&amp; !vis[v]){vis[v] = 1;if (p[v] == 0 || match(p[v])){p[v] = u;return 1;}}}return 0;}signed main() {std::ios::sync_with_stdio(false);std::cin.tie(0);while (cin &gt;&gt; n &gt;&gt; m){mst(vis);mst(p);mst(mp);for (int i = 1; i &lt;= n; i++){int x;cin &gt;&gt; x;while (x--){int j;cin &gt;&gt; j;mp[i][j] = 1; //一定是单向建边}}int ans = 0;for (int i = 1; i &lt;= n; i++){mst(vis);if (match(i))ans++;}cout &lt;&lt; ans &lt;&lt; endl;}return 0;}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h1 id="HK算法"><a href="#HK算法" class="headerlink" title="HK算法"></a>HK算法</h1><p>END</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    <category term="算法" scheme="https://heekaai.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="最大匹配" scheme="https://heekaai.github.io/categories/%E7%AE%97%E6%B3%95/%E6%9C%80%E5%A4%A7%E5%8C%B9%E9%85%8D/"/>
+    
+    
+    <category term="大一" scheme="https://heekaai.github.io/tags/%E5%A4%A7%E4%B8%80/"/>
+    
+    <category term="图论" scheme="https://heekaai.github.io/tags/%E5%9B%BE%E8%AE%BA/"/>
+    
+  </entry>
   
   <entry>
     <title>矩阵快速幂</title>
