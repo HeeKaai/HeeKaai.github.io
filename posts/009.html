@@ -677,21 +677,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-04-26
+                    2022-05-09
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    9 分
                 </div>
                 
 
@@ -760,6 +760,7 @@ signed main() {
 	else cout &lt;&lt; "该图不是二分图" &lt;&lt; endl;
 	return 0;
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>遍历时我们这里选择的是DFS去遍历，当然选择BFS去遍历当然也是没问题的，核心的思路仍旧是染色法。</p>
 <h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><p>交错路径：给定图G的一个匹配 M ,如果一条路径的边交替出现在M和不出现在M中，则将这条路径称为一条M-交错路径。</p>
 <p>增广路径：如果一条交错路径的两个端点是非饱和点（不与匹配的边相关联），我们称这条路径为增广路径。</p>
 <p>Hall定理：对于一个二部图G~(<em>X</em>,<em>Y</em>)，X存在一个匹配的充分必要条件为对于X的任意子集S，S的邻居个数N(S)必须大于等于S的大小|S|。</p>
@@ -797,7 +798,7 @@ void sovle() {
 	}
 	cout &lt;&lt; cnt &lt;&lt; endl;
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>仔细体会：“先到先得，能让则让”，在match函数的递归过程中，这八个字可以说被体现的淋漓尽致。</p>
+<p>仔细体会：“先到先得，能让则让”，在match（）函数的递归过程中，这八个字可以说被体现的淋漓尽致。</p>
 <p>用例题来具体感受一下</p>
 <h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p><a target="_blank" rel="noopener" href="https://172.16.79.125/problem/viewProblem.action?id=9070">原题链接POJ-1274</a></p>
 <p>匈牙利算法的纯裸题，直接放代码</p>
@@ -864,7 +865,179 @@ signed main() {
 	}
 	return 0;
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="HK算法"><a href="#HK算法" class="headerlink" title="HK算法"></a>HK算法</h1><p>HK算法（Hopcroft-Carp算法）是对匈牙利算法的一个优化，匈牙利算法时间复杂度为 O（N <em> M）级别的，在1000个点以内时间复杂度尚可接受，但是如果数据变大，时间复杂度无法接受，HK算法就可以将时间复杂度降低至 O（sqrt（ n ）</em> m）级别。（原因：匈牙利算法一次只更新一条增广路，而HK算法同时更新多条互不相交的最短增广路。）</p>
+<h1 id="HK算法"><a href="#HK算法" class="headerlink" title="HK算法"></a>HK算法</h1><p>HK算法（Hopcroft-Carp算法）是对匈牙利算法的一个优化，匈牙利算法时间复杂度为 O（N <em> M）级别的，在1000个点以内时间复杂度尚可接受，但是如果数据变大，时间复杂度无法接受，HK算法就可以将时间复杂度降低至 O（N^（1/2）</em>M）级别。（原因：匈牙利算法一次只更新一条增广路，而HK算法同时更新多条互不相交的最短增广路。时间复杂度不予证明，感兴趣的可以自行去看）</p>
+<p>HK算法本质是对匈牙利算法进行了优化，匈牙利是依次去遍历点和边，而HK算法是用BFS同时去寻找多条增广路，然后寻找到了极大增广路集，然后再用匈牙利算法的DFS去对增广路集进行增广，直接上代码吧，可以当板子用。</p>
+<p>一般而言，500个点以内选择匈牙利算法，5000个点以内选择HK算法。</p>
+<h2 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h2><p><a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/showproblem.php?pid=2389">HDU2389</a></p>
+<p>AC代码:</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;queue&gt;
+#include &lt;cmath&gt;
+using namespace std;
+ 
+const int MAXN = 3010;
+const int MAXM = 3010*3010;
+const int INF = 0x3f3f3f3f;
+ 
+struct Edge
+{
+	int v;
+	int next;
+}edge[MAXM];
+ 
+struct node
+{
+	double x, y;
+	double v;
+}a[MAXN], b[MAXN];
+ 
+int nx, ny;
+int cnt;
+int t;
+int dis;
+ 
+int first[MAXN];
+int xlink[MAXN], ylink[MAXN]; 
+/*xlink[i]表示左集合顶点所匹配的右集合顶点序号，ylink[i]表示右集合i顶点匹配到的左集合顶点序号。*/
+int dx[MAXN], dy[MAXN]; 
+/*dx[i]表示左集合i顶点的距离编号，dy[i]表示右集合i顶点的距离编号*/
+int vis[MAXN]; //寻找增广路的标记数组 
+ 
+void init()
+{
+	cnt = 0;
+	memset(first, -1, sizeof(first));
+	memset(xlink, -1, sizeof(xlink));
+	memset(ylink, -1, sizeof(ylink));
+}
+ 
+void read_graph(int u, int v)
+{
+	edge[cnt].v = v;
+	edge[cnt].next = first[u], first[u] = cnt++;
+}
+ 
+int bfs()
+{
+	queue&lt;int&gt; q;
+	dis = INF;
+	memset(dx, -1, sizeof(dx));
+	memset(dy, -1, sizeof(dy));
+	for(int i = 0; i &lt; nx; i++)
+	{
+		if(xlink[i] == -1)
+		{
+			q.push(i);
+			dx[i] = 0;
+		}
+	}
+	while(!q.empty())
+	{
+		int u = q.front(); q.pop();
+		if(dx[u] &gt; dis) break;
+		for(int e = first[u]; e != -1; e = edge[e].next)
+		{
+			int v = edge[e].v;
+			if(dy[v] == -1)
+			{
+				dy[v] = dx[u] + 1;
+				if(ylink[v] == -1) dis = dy[v];
+				else
+				{
+					dx[ylink[v]] = dy[v]+1;
+					q.push(ylink[v]);
+				}
+			}
+		}
+	}
+	return dis != INF;
+}
+ 
+int find(int u)
+{
+	for(int e = first[u]; e != -1; e = edge[e].next)
+	{
+		int v = edge[e].v;
+		if(!vis[v] &amp;&amp; dy[v] == dx[u]+1)
+		{
+			vis[v] = 1;
+			if(ylink[v] != -1 &amp;&amp; dy[v] == dis) continue;
+			if(ylink[v] == -1 || find(ylink[v]))
+			{
+				xlink[u] = v, ylink[v] = u;
+				return 1;
+			}
+		}
+	}
+	return 0;
+}
+ 
+int MaxMatch()
+{
+	int ans = 0;
+	while(bfs())
+	{
+		memset(vis, 0, sizeof(vis));
+		for(int i = 0; i &lt; nx; i++) if(xlink[i] == -1)
+		{
+			ans += find(i);
+		}
+	}
+	return ans;
+}
+ 
+double dist(const node a, const node b)
+{
+	return sqrt((a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y));
+}
+ 
+void read_case()
+{
+	init();
+	int Time;
+	scanf("%d", &amp;Time);
+	scanf("%d", &amp;nx);
+	for(int i = 0; i &lt; nx; i++)
+	{
+		scanf("%lf%lf%lf", &amp;a[i].x, &amp;a[i].y, &amp;a[i].v);
+	}
+	scanf("%d", &amp;ny);
+	for(int i = 0; i &lt; ny; i++)
+	{
+		scanf("%lf%lf", &amp;b[i].x, &amp;b[i].y);
+	}
+	for(int i = 0; i &lt; nx; i++)
+	{
+		for(int j = 0; j &lt; ny; j++)
+		{
+			double limit = a[i].v*Time;
+			double s = dist(a[i], b[j]);
+			if(s &lt;= limit) read_graph(i, j);
+		}
+	}
+}
+ 
+void solve()
+{
+	read_case();
+	int ans = MaxMatch();
+	printf("%d\n\n", ans);
+}
+ 
+int main()
+{
+	int T, times = 0;
+	scanf("%d", &amp;T);
+	while(T--)
+	{
+		printf("Scenario #%d:\n", ++times);
+		solve();
+	}
+	return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>END</p>
 
                 
@@ -1760,7 +1933,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">20.2k</span>&nbsp;字
+                class="white-color">20.9k</span>&nbsp;字
             
             
             
