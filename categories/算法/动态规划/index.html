@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="炫酷跑车, HeeKaai 计算机 算法笔记 人间失格">
+    <meta name="keywords" content="分类: 动态规划, HeeKaai 计算机 算法笔记 人间失格">
     <meta name="description" content="本科 | 计算机科学与技术 | 算法笔记">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -18,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>炫酷跑车 | 人间失格</title>
+    <title>分类: 动态规划 | 人间失格</title>
 
     <link rel="icon" type="image/jpeg" href="https://s4.ax1x.com/2022/01/02/TTxWtK.jpg">
 
@@ -494,225 +494,564 @@
 
 </header>
 
-    <link rel="stylesheet" href="/css/gallery.css">
+    <div class="bg-cover pd-header about-cover">
+    <div class="container">
+    <div class="row">
+    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+        <div class="brand">
+            <div class="title center-align">
+                
+                人间失格の博客
+                
+            </div>
 
-<link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/justifiedGallery/3.7.0/css/justifiedGallery.min.css">
-
-
-
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://s4.ax1x.com/2022/02/12/HwAkfx.jpg')">
-    <div class="container" style="right: 0px;left: 0px;">
-        <div class="row">
-            <div class="col s12 m12 l12">
-                <div class="brand">
-                    <h1 class="description center-align post-title">炫酷跑车</h1>
-                </div>
+            <div class="description center-align">
+                
+                <span id="subtitle"></span>
+                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+                <script>
+                    var typed = new Typed("#subtitle", {
+                        strings: ['自由与命运只垂青每天努力的人','The harder you work, the luckier you will be'],
+                        startDelay: 300,
+                        typeSpeed: 70,
+                        loop: true,
+                        backSpeed: 35,
+                        showCursor: true
+                    });
+                </script>
+                
             </div>
         </div>
     </div>
 </div>
 
-
-
-
-<!--   "  <p class=\"photo-name\">" + photo + "</p>\n" +
-文件名先注释掉  -->
-
-<!-- 不加密写法 -->
-<!-- <div class="container">
-    <div class="photo-wrapper" >
-        <div class="waterfall" id="mygallery">
-            <a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/01.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/01.jpg"
-       alt=炫酷跑车/01.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/02.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/02.jpg"
-       alt=炫酷跑车/02.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/03.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/03.jpg"
-       alt=炫酷跑车/03.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/04.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/04.jpg"
-       alt=炫酷跑车/04.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/05.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/05.jpg"
-       alt=炫酷跑车/05.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/06.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/06.jpg"
-       alt=炫酷跑车/06.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/07.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/07.jpg"
-       alt=炫酷跑车/07.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/08.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/08.jpg"
-       alt=炫酷跑车/08.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/09.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/09.jpg"
-       alt=炫酷跑车/09.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/10.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/10.jpg"
-       alt=炫酷跑车/10.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/11.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/11.jpg"
-       alt=炫酷跑车/11.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/12.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/12.jpg"
-       alt=炫酷跑车/12.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/13.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/13.jpg"
-       alt=炫酷跑车/13.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/14.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/14.jpg"
-       alt=炫酷跑车/14.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/15.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/15.jpg"
-       alt=炫酷跑车/15.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/16.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/16.jpg"
-       alt=炫酷跑车/16.jpg>
-    </a>
-        </div>
-    </div>
-</div> -->
-
-<main class="content" >
-<!-- 加密写法 -->
-<div class="container">
-    <div class="photo-wrapper">
-        
-            <div class="waterfall" id="encrypt-blog">
-                <a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/01.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/01.jpg"
-       alt=炫酷跑车/01.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/02.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/02.jpg"
-       alt=炫酷跑车/02.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/03.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/03.jpg"
-       alt=炫酷跑车/03.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/04.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/04.jpg"
-       alt=炫酷跑车/04.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/05.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/05.jpg"
-       alt=炫酷跑车/05.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/06.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/06.jpg"
-       alt=炫酷跑车/06.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/07.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/07.jpg"
-       alt=炫酷跑车/07.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/08.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/08.jpg"
-       alt=炫酷跑车/08.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/09.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/09.jpg"
-       alt=炫酷跑车/09.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/10.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/10.jpg"
-       alt=炫酷跑车/10.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/11.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/11.jpg"
-       alt=炫酷跑车/11.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/12.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/12.jpg"
-       alt=炫酷跑车/12.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/13.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/13.jpg"
-       alt=炫酷跑车/13.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/14.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/14.jpg"
-       alt=炫酷跑车/14.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/15.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/15.jpg"
-       alt=炫酷跑车/15.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed/galleries/炫酷跑车/16.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/炫酷跑车/16.jpg"
-       alt=炫酷跑车/16.jpg>
-    </a>
-            </div>
-        
-    </div>
-</div>
-<main>
-<script src=""></script>
-<script src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-<script src="https://cdn.staticfile.org/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js"></script>
 
 <script>
-  // $(".waterfall").lazyload();
-
-$("a[rel=example_group]").fancybox();
-//  不加密写法
-// $("#mygallery").justifiedGallery({margins: 5, rowHeight: 150});
-$("#encrypt-blog").justifiedGallery({margins: 5, rowHeight: 150});
-
+    // 每天切换 banner 图.  Switch banner image every day.
+    var bannerUrl = "/medias/banner/" + new Date().getDay() + '.jpg';
+    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
 </script>
+
+
+    </div>
+</div>
+
+<main class="content">
+
+    
+
+<div id="category-cloud" class="container chip-container">
+    <div class="card">
+        <div class="card-content">
+            <div class="tag-title center-align">
+                <i class="fas fa-bookmark"></i>&nbsp;&nbsp;文章分类
+            </div>
+            <div class="tag-chips">
+                
+                
+                
+                <a href="/categories/C/" title="C++: 2">
+                  <div class="moleskine-wrapper">
+                      <div class="moleskine-notebook">
+                          <div class="chip notebook-cover center-align waves-effect waves-light
+                           chip-default "
+                                  style="background-color: #138389;">                                               
+                              <div class="notebook-skin
+                                   chip-default "
+                                  >C++                                  
+                              </div>
+                          </div>
+                          <div class="notebook-page dotted"></div>
+                      </div>
+                  </div>
+                </a>
+                
+                
+                <a href="/categories/%E7%AE%80%E4%BB%8B/" title="简介: 1">
+                  <div class="moleskine-wrapper">
+                      <div class="moleskine-notebook">
+                          <div class="chip notebook-cover center-align waves-effect waves-light
+                           chip-default "
+                                  style="background-color: #F289AD;">                                               
+                              <div class="notebook-skin
+                                   chip-default "
+                                  >简介                                  
+                              </div>
+                          </div>
+                          <div class="notebook-page dotted"></div>
+                      </div>
+                  </div>
+                </a>
+                
+                
+                <a href="/categories/%E7%AE%97%E6%B3%95/" title="算法: 6">
+                  <div class="moleskine-wrapper">
+                      <div class="moleskine-notebook">
+                          <div class="chip notebook-cover center-align waves-effect waves-light
+                           chip-default "
+                                  style="background-color: #78491F;">                                               
+                              <div class="notebook-skin
+                                   chip-default "
+                                  >算法                                  
+                              </div>
+                          </div>
+                          <div class="notebook-page dotted"></div>
+                      </div>
+                  </div>
+                </a>
+                
+                
+                <a href="/categories/C/%E5%9F%BA%E7%A1%80/" title="基础: 2">
+                  <div class="moleskine-wrapper">
+                      <div class="moleskine-notebook">
+                          <div class="chip notebook-cover center-align waves-effect waves-light
+                           chip-default "
+                                  style="background-color: #3B3CCB;">                                               
+                              <div class="notebook-skin
+                                   chip-default "
+                                  >基础                                  
+                              </div>
+                          </div>
+                          <div class="notebook-page dotted"></div>
+                      </div>
+                  </div>
+                </a>
+                
+                
+                <a href="/categories/%E7%AE%97%E6%B3%95/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" title="最小生成树: 1">
+                  <div class="moleskine-wrapper">
+                      <div class="moleskine-notebook">
+                          <div class="chip notebook-cover center-align waves-effect waves-light
+                           chip-default "
+                                  style="background-color: #4902A2;">                                               
+                              <div class="notebook-skin
+                                   chip-default "
+                                  >最小生成树                                  
+                              </div>
+                          </div>
+                          <div class="notebook-page dotted"></div>
+                      </div>
+                  </div>
+                </a>
+                
+                
+                <a href="/categories/C/%E5%9F%BA%E7%A1%80/STL/" title="STL: 2">
+                  <div class="moleskine-wrapper">
+                      <div class="moleskine-notebook">
+                          <div class="chip notebook-cover center-align waves-effect waves-light
+                           chip-default "
+                                  style="background-color: #BA87F1;">                                               
+                              <div class="notebook-skin
+                                   chip-default "
+                                  >STL                                  
+                              </div>
+                          </div>
+                          <div class="notebook-page dotted"></div>
+                      </div>
+                  </div>
+                </a>
+                
+                
+                <a href="/categories/%E7%AE%97%E6%B3%95/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/" title="最短路径: 1">
+                  <div class="moleskine-wrapper">
+                      <div class="moleskine-notebook">
+                          <div class="chip notebook-cover center-align waves-effect waves-light
+                           chip-default "
+                                  style="background-color: #E63678;">                                               
+                              <div class="notebook-skin
+                                   chip-default "
+                                  >最短路径                                  
+                              </div>
+                          </div>
+                          <div class="notebook-page dotted"></div>
+                      </div>
+                  </div>
+                </a>
+                
+                
+                <a href="/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title="数据结构: 1">
+                  <div class="moleskine-wrapper">
+                      <div class="moleskine-notebook">
+                          <div class="chip notebook-cover center-align waves-effect waves-light
+                           chip-default "
+                                  style="background-color: #8E31ED;">                                               
+                              <div class="notebook-skin
+                                   chip-default "
+                                  >数据结构                                  
+                              </div>
+                          </div>
+                          <div class="notebook-page dotted"></div>
+                      </div>
+                  </div>
+                </a>
+                
+                
+                <a href="/categories/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80/" title="基础: 1">
+                  <div class="moleskine-wrapper">
+                      <div class="moleskine-notebook">
+                          <div class="chip notebook-cover center-align waves-effect waves-light
+                           chip-default "
+                                  style="background-color: #BC5B2F;">                                               
+                              <div class="notebook-skin
+                                   chip-default "
+                                  >基础                                  
+                              </div>
+                          </div>
+                          <div class="notebook-page dotted"></div>
+                      </div>
+                  </div>
+                </a>
+                
+                
+                <a href="/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%8A%A8%E6%80%81%E8%BF%9E%E9%80%9A%E6%80%A7%E9%97%AE%E9%A2%98/" title="动态连通性问题: 1">
+                  <div class="moleskine-wrapper">
+                      <div class="moleskine-notebook">
+                          <div class="chip notebook-cover center-align waves-effect waves-light
+                           chip-default "
+                                  style="background-color: #873D7F;">                                               
+                              <div class="notebook-skin
+                                   chip-default "
+                                  >动态连通性问题                                  
+                              </div>
+                          </div>
+                          <div class="notebook-page dotted"></div>
+                      </div>
+                  </div>
+                </a>
+                
+                
+                <a href="/categories/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80/CRT%E6%A8%A1%E6%9D%BF/" title="CRT模板: 1">
+                  <div class="moleskine-wrapper">
+                      <div class="moleskine-notebook">
+                          <div class="chip notebook-cover center-align waves-effect waves-light
+                           chip-default "
+                                  style="background-color: #47B01C;">                                               
+                              <div class="notebook-skin
+                                   chip-default "
+                                  >CRT模板                                  
+                              </div>
+                          </div>
+                          <div class="notebook-page dotted"></div>
+                      </div>
+                  </div>
+                </a>
+                
+                
+                <a href="/categories/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80/CRT%E6%A8%A1%E6%9D%BF/%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/" title="扩展欧几里得: 1">
+                  <div class="moleskine-wrapper">
+                      <div class="moleskine-notebook">
+                          <div class="chip notebook-cover center-align waves-effect waves-light
+                           chip-default "
+                                  style="background-color: #8AFE44;">                                               
+                              <div class="notebook-skin
+                                   chip-default "
+                                  >扩展欧几里得                                  
+                              </div>
+                          </div>
+                          <div class="notebook-page dotted"></div>
+                      </div>
+                  </div>
+                </a>
+                
+                
+                <a href="/categories/%E7%AE%97%E6%B3%95/%E6%9C%80%E5%A4%A7%E5%8C%B9%E9%85%8D/" title="最大匹配: 1">
+                  <div class="moleskine-wrapper">
+                      <div class="moleskine-notebook">
+                          <div class="chip notebook-cover center-align waves-effect waves-light
+                           chip-default "
+                                  style="background-color: #91C1DA;">                                               
+                              <div class="notebook-skin
+                                   chip-default "
+                                  >最大匹配                                  
+                              </div>
+                          </div>
+                          <div class="notebook-page dotted"></div>
+                      </div>
+                  </div>
+                </a>
+                
+                
+                <a href="/categories/%E5%BF%AB%E9%80%9F%E5%B9%82/" title="快速幂: 1">
+                  <div class="moleskine-wrapper">
+                      <div class="moleskine-notebook">
+                          <div class="chip notebook-cover center-align waves-effect waves-light
+                           chip-default "
+                                  style="background-color: #332FAE;">                                               
+                              <div class="notebook-skin
+                                   chip-default "
+                                  >快速幂                                  
+                              </div>
+                          </div>
+                          <div class="notebook-page dotted"></div>
+                      </div>
+                  </div>
+                </a>
+                
+                
+                <a href="/categories/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" title="动态规划: 1">
+                  <div class="moleskine-wrapper">
+                      <div class="moleskine-notebook">
+                          <div class="chip notebook-cover center-align waves-effect waves-light
+                           chip-active "
+                                  style="background-color: #1987AD;">                                               
+                              <div class="notebook-skin
+                                   chip-active "
+                                  >动态规划                                  
+                              </div>
+                          </div>
+                          <div class="notebook-page dotted"></div>
+                      </div>
+                  </div>
+                </a>
+                
+                
+                <a href="/categories/C%E8%AF%AD%E8%A8%80/" title="C语言: 1">
+                  <div class="moleskine-wrapper">
+                      <div class="moleskine-notebook">
+                          <div class="chip notebook-cover center-align waves-effect waves-light
+                           chip-default "
+                                  style="background-color: #C5940B;">                                               
+                              <div class="notebook-skin
+                                   chip-default "
+                                  >C语言                                  
+                              </div>
+                          </div>
+                          <div class="notebook-page dotted"></div>
+                      </div>
+                  </div>
+                </a>
+                
+                
+                <a href="/categories/%E5%BF%AB%E9%80%9F%E5%B9%82/%E7%9F%A9%E9%98%B5%E7%9A%84%E8%AE%A1%E7%AE%97/" title="矩阵的计算: 1">
+                  <div class="moleskine-wrapper">
+                      <div class="moleskine-notebook">
+                          <div class="chip notebook-cover center-align waves-effect waves-light
+                           chip-default "
+                                  style="background-color: #8BC778;">                                               
+                              <div class="notebook-skin
+                                   chip-default "
+                                  >矩阵的计算                                  
+                              </div>
+                          </div>
+                          <div class="notebook-page dotted"></div>
+                      </div>
+                  </div>
+                </a>
+                
+                
+                <a href="/categories/C%E8%AF%AD%E8%A8%80/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" title="算法笔记: 1">
+                  <div class="moleskine-wrapper">
+                      <div class="moleskine-notebook">
+                          <div class="chip notebook-cover center-align waves-effect waves-light
+                           chip-default "
+                                  style="background-color: #620AC8;">                                               
+                              <div class="notebook-skin
+                                   chip-default "
+                                  >算法笔记                                  
+                              </div>
+                          </div>
+                          <div class="notebook-page dotted"></div>
+                      </div>
+                  </div>
+                </a>
+                
+                
+                <a href="/categories/C%E8%AF%AD%E8%A8%80/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E5%9F%BA%E7%A1%80/" title="基础: 1">
+                  <div class="moleskine-wrapper">
+                      <div class="moleskine-notebook">
+                          <div class="chip notebook-cover center-align waves-effect waves-light
+                           chip-default "
+                                  style="background-color: #497B33;">                                               
+                              <div class="notebook-skin
+                                   chip-default "
+                                  >基础                                  
+                              </div>
+                          </div>
+                          <div class="notebook-page dotted"></div>
+                      </div>
+                  </div>
+                </a>
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <style>
+    /* 文章分类书本样式 */
+    .chip-container .tag-chips {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .chip-container .tag-chips a {
+        margin: 0 7px 10px;
+    }
+    .chip-container .chip {
+        max-width: calc(100% / 4);
+        min-width: 10em;
+        height: 200px;
+        position: relative;
+        transition: .5s linear;
+        padding: 19px 0;
+        line-height: 20px;
+        z-index: 990;
+        border-radius: 5px 15px 15px 5px;
+        transform-origin: left center 0;
+    }
+    .chip-container .notebook-cover::before {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: calc(100% + 2px);
+        top: -1px;
+        z-index: 100;
+        border-radius: 2px;
+        right: 25px;
+        transition: 2s ease;
+        /* background: linear-gradient(to right,#9c2e2b 0,#cc4b48 12%,#9c2e2b 25%,#cc4b48 37%,#9c2e2b 50%,#cc4b48 62%,#9c2e2b 75%,#cc4b48 87%,#9c2e2b 100%); */
+        background: linear-gradient(to right,#1e606e 0,#2e95aa 12%,#1e606e 25%,#2e95aa 37%,#1e606e 50%,#2e95aa 62%,#1e606e 75%,#2e95aa 87%,#1e606e 100%);
+    }
+
+    .chip .notebook-skin {
+        height: 50px;
+        width: 100%;
+        background: #e8e8e0;
+        margin-top: 42px;
+        padding: 10px 32px 64px 10px;
+        font-size: 19px;
+        position: relative;
+        z-index: 10;
+        color: #222;
+        text-align: left;
+        box-shadow: 0 1px 1px rgba(0,0,0,.2);
+    }
+    .chip .notebook-skin:before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 15px;
+        left: 0;
+        bottom: 0;
+        background: #cddc39;
+    }
+    .notebook-cover {
+        background: #cc4b48;
+        height: 200px;
+        width: 140px;
+        position: absolute;
+        border-radius: 5px 15px 15px 5px;
+        z-index: 10;
+        transition: .5s linear;
+        transform-style: preserve-3d;
+        transform-origin: left center 0;
+    }
+
+    .moleskine-wrapper {
+        max-width: calc(100% / 4);
+        min-width: 10em;
+    }
+    .moleskine-notebook:hover .notebook-cover {
+        transform: rotateY(-50deg);
+        z-index: 99;
+        box-shadow: 20px 10px 50px rgba(0,0,0,.2);
+    }
+    .moleskine-notebook {
+        height: 200px;
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        transition: .5s linear;
+        border-radius: 5px 15px 15px 5px;
+        transform-origin: left center 0;
+    }
+    .moleskine-notebook:hover {
+        transform: rotateZ(-10deg);
+    }
+    .notebook-page.dotted {
+        background: linear-gradient(to bottom,#fbfae8 9px,#e4e4e4 1px);
+        background-size: 100% 10px;
+    }
+    .chip-container .chip:hover {
+        background: none;
+    }
+    .notebook-page {
+        height: 100%;
+        width: 140px;
+        position: absolute;
+        top: 10px;
+        background-color: #fbfae8;
+        z-index: 0;
+        border-radius: 5px 16px 16px 5px;
+        overflow: hidden;
+    }
+    </style>
+
+    
+
+    <article id="articles" class="container articles">
+        <div class="row tags-posts">
+            
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/posts/8.html">
+                        <div class="card-image tag-image">
+                            
+                            
+                            <img src="https://s4.ax1x.com/2022/02/12/HwAV1K.jpg" class="responsive-img" alt="背包问题">
+                            
+                            <span class="card-title">背包问题</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                介绍动态规划中的入门且经典的一类问题--背包问题。
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-02
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                    算法
+                                </a>
+                                
+                                <a href="/categories/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="post-category">
+                                    动态规划
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/%E5%A4%A7%E4%B8%80/">
+                            <span class="chip bg-color">大一</span>
+                        </a>
+                        
+                        <a href="/tags/DP/">
+                            <span class="chip bg-color">DP</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </article>
+</main>
+
+
 
 
     <footer class="page-footer bg-color">
